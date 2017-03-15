@@ -20,7 +20,6 @@ public class LoginController {
 	@RequestMapping(value = "/login")
 	public String login(@RequestParam String account, @RequestParam String password) {
 		logger.info("account: {}\tpassword: {}", account, password);
-		logger.info("进入登录页面.");
 		return "/loginSuccess";
 	}
 
