@@ -8,11 +8,6 @@ import org.yejh.shop.dao.UserInfoDao;
 import org.yejh.shop.entity.UserInfo;
 import org.yejh.shop.service.UserInfoService;
 
-/**
- * 
- * @author Ye Jiahao
- *
- */
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
 
