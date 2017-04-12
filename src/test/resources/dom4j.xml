@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root name="中国">
+    <RRR attr="haha">
+        <R2R>22222222</R2R>
+        <R3R>33333333</R3R>
+    </RRR>
+    <RRR prop="interesting">
+        <R2R>44444444</R2R>
+        <R3R>55555555</R3R>
+    </RRR>
+</root>

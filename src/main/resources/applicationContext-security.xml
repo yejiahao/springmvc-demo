@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+xmlns:security="http://www.springframework.org/schema/security"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans  
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd  
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-4.2.xsd
+">
+  
+    <!-- 配置不过滤的资源（静态资源及登录相关） -->
+    <security:http pattern="/**/*.css" security="none"/>
+    <security:http pattern="/**/*.jpg" security="none"/> 
+    <security:http pattern="/**/*.jpeg" security="none"/> 
+    <security:http pattern="/**/*.gif" security="none"/> 
+    <security:http pattern="/**/*.png" security="none"/> 
+    <security:http pattern="/js/*.js" security="none"/> 
+    <security:http pattern="/login.jsp" security="none"/>
+    <!-- 不过滤验证码 -->
+    <security:http pattern="/getCode" security="none" />
+    <!-- 不过滤测试内容 --> 
+    <security:http pattern="/test/**" security="none"/>
+      
+    <security:http auto-config="true">  
+        <security:intercept-url pattern="/app.jsp" access="ROLE_SERVICE"/>
+        <security:intercept-url pattern="/**" access="ROLE_ADMIN"/>  
+    </security:http>
+      
+    <security:authentication-manager>  
+        <security:authentication-provider>  
+            <security:user-service >  
+                <security:user name="yejiahao" password="yejiahao" authorities="ROLE_ADMIN"/>  
+            </security:user-service>  
+        </security:authentication-provider>  
+    </security:authentication-manager>  
+    
+</beans>

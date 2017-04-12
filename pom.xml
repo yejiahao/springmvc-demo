@@ -10,7 +10,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.1.4.RELEASE</spring.version>
+		<spring.version>4.2.2.RELEASE</spring.version>
 		<jackson.version>2.5.0</jackson.version>
 	</properties>
 
@@ -113,25 +113,35 @@
 			<version>1.6.0</version>
 		</dependency>
 
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.3.1</version>
+		</dependency>
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
 		</dependency>
-
-		<!-- c3p0 -->
+		<!-- druid -->
 		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.5-pre10</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.29</version>
 		</dependency>
 
 		<!-- json -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.24</version>
+			<version>1.2.28</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -180,7 +190,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-		
+
 		<!-- xml -->
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -189,20 +199,52 @@
 		</dependency>
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<package.environment>DEV</package.environment>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prd</id>
+			<properties>
+				<package.environment>PRD</package.environment>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
 		<finalName>springmvc-demo</finalName>
 
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>DEV/*</exclude>
+					<exclude>PRD/*</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 		<plugins>
-			<!-- run the JUnit unit tests in an isolated classloader -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-				<version>2.4.2</version> <configuration> <skipTests>true</skipTests> </configuration> 
-				</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<webResources>
+						<webResource>
+							<directory>src/main/resources/${package.environment}</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+						</webResource>
+					</webResources>
 				</configuration>
 			</plugin>
 

@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.yejh.shop.entity.UserInfo;
@@ -18,11 +19,12 @@ import org.yejh.shop.service.UserInfoService;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:/applicationContext.xml" })
+@ContextConfiguration(locations = { "classpath*:/applicationContext.xml", "classpath*:/mybatis/*.xml" })
 public class UserInfoServiceTest {
 	private static final Logger logger = LoggerFactory.getLogger(UserInfoServiceTest.class);
 
 	@Autowired
+	@Qualifier(value = "userInfoService")
 	private UserInfoService userInfoService;
 
 	@Before

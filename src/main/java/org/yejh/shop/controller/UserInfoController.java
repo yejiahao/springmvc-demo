@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class UserInfoController {
 	private static final Logger logger = Logger.getLogger(UserInfoController.class);
 
 	@Autowired
+	@Qualifier(value = "userInfoService")
 	private UserInfoService userInfoService;
 
 	@RequestMapping(value = "/showInfo/{userId}")
@@ -43,7 +45,7 @@ public class UserInfoController {
 		return userInfoList;
 	}
 
-	@RequestMapping("/showInfosInGrid")
+	@RequestMapping(value = "/showInfosInGrid")
 	public String showInfosInGrid(HttpServletRequest request, ModelMap modelMap) {
 		logger.info("全部用户信息放入表格");
 		String[] unameList = request.getParameterValues("unameList");

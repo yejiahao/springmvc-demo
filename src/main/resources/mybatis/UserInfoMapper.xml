@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.yejh.shop.dao.mapping.UserInfoMapper">
+<resultMap id="userInfoRM" type="org.yejh.shop.dto.UserInfoDto">
+  <id column="id" property="id" jdbcType="INTEGER" />
+  <result column="uname" property="uName" jdbcType="VARCHAR" />
+  <result column="unumber" property="uNumber" jdbcType="INTEGER" />
+  <result column="uregister_time" property="uRegisterTime" jdbcType="DATE" />
+</resultMap>
+<select id="getUserInfoList" resultMap="userInfoRM">
+  SELECT * 
+  FROM 
+  user_info;
+</select>
+</mapper>

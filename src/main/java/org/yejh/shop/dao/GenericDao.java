@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface GenericDao<T, PK extends Serializable> {
-	T getById(PK id);
+	T getById(PK id) throws Exception;
 
-	List<T> findAll();
+	List<T> findAll() throws Exception;
 
-	PK save(T entity);
+	PK save(T entity) throws Exception;
 }

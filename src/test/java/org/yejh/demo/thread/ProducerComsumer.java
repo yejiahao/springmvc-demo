@@ -50,7 +50,7 @@ public class ProducerComsumer {
 	}
 
 	static class Buffer {
-		private List<Integer> list = new ArrayList<>();
+		private List<Integer> list = new ArrayList<Integer>();
 		private static final int CAPACITY = 2;
 
 		public void addElement(int i) {

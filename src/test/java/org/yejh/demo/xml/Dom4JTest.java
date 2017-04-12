@@ -9,15 +9,15 @@ import org.dom4j.io.SAXReader;
 
 public class Dom4JTest {
 	public static void main(String[] args) throws Exception {
-		File xmlFile = new File("src/test/resources/city.xml");
+		File xmlFile = new File("src/test/resources/dom4j.xml");
 		System.out.println("absolutePath: " + xmlFile.getAbsolutePath());
 
 		SAXReader reader = new SAXReader();
 		Document document = reader.read(xmlFile);
 		Element root = document.getRootElement();
-		Iterator<Element> iterator = root.elementIterator("RRR");
+		Iterator<?> iterator = root.elementIterator("RRR");
 		while (iterator.hasNext()) {
-			Element element = iterator.next();
+			Element element = (Element) iterator.next();
 			System.out.println(element.attribute(0).getValue());
 			String city = element.elementText("R2R");
 			String area = element.elementText("R3R");
