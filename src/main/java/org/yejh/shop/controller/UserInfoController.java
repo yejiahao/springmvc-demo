@@ -54,16 +54,12 @@ public class UserInfoController {
 		List<UserInfo> userInfoList = new ArrayList<UserInfo>();
 		String jsonStr = null;
 		for (int i = 0; i < unameList.length; i++) {
-			String uname;
-			Integer unumber;
-			Date uRegisterTime;
 			try {
-				uname = unameList[i];
-				unumber = Integer.parseInt(unumberList[i]);
-				uRegisterTime = new SimpleDateFormat("yyyy-MM-dd").parse(uRegisterTimeList[i]);
+				String uname = unameList[i];
+				Integer unumber = Integer.parseInt(unumberList[i]);
+				Date uRegisterTime = new SimpleDateFormat("yyyy-MM-dd").parse(uRegisterTimeList[i]);
 				userInfoList.add(new UserInfo(uname, unumber, uRegisterTime));
 				jsonStr = JSON.toJSONString(userInfoList);
-
 			} catch (Exception e) {
 				logger.error("showInfosInGrid： ", e);
 			}

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.yejh.shop.dto.LocationDto;
+import org.yejh.shop.entity.Location;
 import org.yejh.shop.utils.XmlUtil;
 
 /**
@@ -41,13 +41,13 @@ public class ProvinceController {
 
 	@RequestMapping(value = "/getCitiesByProvince", method = { RequestMethod.POST })
 	@ResponseBody
-	public Object getCitiesByProvince(HttpSession session, @RequestBody LocationDto locationDto) {
-		logger.info("enter getCitiesByProvince: {}", locationDto);
+	public Object getCitiesByProvince(HttpSession session, @RequestBody Location location) {
+		logger.info("enter getCitiesByProvince: {}", location);
 		try {
 			List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 			Element root = XmlUtil.getRootElement(session, "/city.xml");
 
-			Element provinceElement = XmlUtil.getSubElement(root, "province", locationDto.getProvincePostCode());
+			Element provinceElement = XmlUtil.getSubElement(root, "province", location.getProvincePostCode());
 			if (provinceElement != null) {
 				list = XmlUtil.getSubAttr(provinceElement, "city");
 			}
@@ -60,15 +60,15 @@ public class ProvinceController {
 
 	@RequestMapping(value = "/getAreasByCity", method = { RequestMethod.POST })
 	@ResponseBody
-	public Object getAreasByCity(HttpSession session, @RequestBody LocationDto locationDto) {
-		logger.info("enter getAreasByCities: {}", locationDto);
+	public Object getAreasByCity(HttpSession session, @RequestBody Location location) {
+		logger.info("enter getAreasByCities: {}", location);
 		try {
 			List<Map<String, String>> list = null;
 			Element root = XmlUtil.getRootElement(session, "/city.xml");
 
-			Element provinceElement = XmlUtil.getSubElement(root, "province", locationDto.getProvincePostCode());
+			Element provinceElement = XmlUtil.getSubElement(root, "province", location.getProvincePostCode());
 			if (provinceElement != null) {
-				Element cityElement = XmlUtil.getSubElement(provinceElement, "city", locationDto.getCityPostCode());
+				Element cityElement = XmlUtil.getSubElement(provinceElement, "city", location.getCityPostCode());
 				if (cityElement != null) {
 					list = XmlUtil.getSubAttr(cityElement, "area");
 				}

@@ -1,13 +1,9 @@
 package org.yejh.shop.entity;
 
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
-import org.springframework.jdbc.core.RowMapper;
-
-public class UserInfo implements RowMapper<UserInfo>, Serializable {
+public class UserInfo implements Serializable {
 	private static final long serialVersionUID = 692184968611957877L;
 	private Integer id;
 	private String uName;
@@ -60,15 +56,4 @@ public class UserInfo implements RowMapper<UserInfo>, Serializable {
 		return "UserInfo [id=" + id + ", uName=" + uName + ", uNumber=" + uNumber + ", uRegisterTime=" + uRegisterTime
 				+ "]";
 	}
-
-	@Override
-	public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
-		UserInfo userInfo = new UserInfo();
-		userInfo.setId(rs.getInt("id"));
-		userInfo.setuName(rs.getString("uname"));
-		userInfo.setuNumber(rs.getInt("unumber"));
-		userInfo.setuRegisterTime(rs.getDate("uregister_time"));
-		return userInfo;
-	}
-
 }

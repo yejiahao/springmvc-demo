@@ -29,32 +29,32 @@ public class UserInfoServiceTest {
 
 	@Before
 	public void beforeTest() {
-		logger.info("before test----------");
+		logger.info("Before test ----------");
 	}
 
 	@After
 	public void afterTest() {
-		logger.info("after test----------");
+		logger.info("After test ----------");
 	}
 
 	@Test
 	public void testGetById() {
 		Integer id = 1;
 		UserInfo userInfo = userInfoService.getById(id);
-		logger.info(JSON.toJSONStringWithDateFormat(userInfo, "yyyy-MM-dd"));
+		logger.info(JSON.toJSONStringWithDateFormat(userInfo, "yyyy-MM-dd HH:mm:ss"));
 	}
 
 	@Test
 	public void testFindAll() {
 		List<UserInfo> userInfoList = userInfoService.findAll();
 		for (int i = 0; i < userInfoList.size(); i++) {
-			logger.info(JSON.toJSONStringWithDateFormat(userInfoList.get(i), "yyyy-MM-dd"));
+			logger.info(JSON.toJSONStringWithDateFormat(userInfoList.get(i), "yyyy-MM-dd HH:mm:ss"));
 		}
 	}
 
 	@Test
 	public void testSave() {
-		UserInfo userInfo = new UserInfo("郭梦凡", 100, new Date());
+		UserInfo userInfo = new UserInfo("Java开发工程师", 200, new Date());
 		Integer count = userInfoService.save(userInfo);
 		logger.info("count= {}", count);
 	}

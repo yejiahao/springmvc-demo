@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.yejh.shop.dao.mapping.UserInfoMapper">
-<resultMap id="userInfoRM" type="org.yejh.shop.dto.UserInfoDto">
+<resultMap id="userInfoRM" type="org.yejh.shop.entity.UserInfo">
   <id column="id" property="id" jdbcType="INTEGER" />
   <result column="uname" property="uName" jdbcType="VARCHAR" />
   <result column="unumber" property="uNumber" jdbcType="INTEGER" />
-  <result column="uregister_time" property="uRegisterTime" jdbcType="DATE" />
+  <result column="uregister_time" property="uRegisterTime" jdbcType="TIMESTAMP" />
 </resultMap>
-<select id="getUserInfoList" resultMap="userInfoRM">
+<select id="getUserInfo" resultMap="userInfoRM" parameterType="org.yejh.shop.entity.UserInfo">
   SELECT * 
   FROM 
-  user_info;
+  user_info
+  <where>
+    <if test="id != null">
+      AND id = #{id}
+    </if>
+  </where>
 </select>
+
+<insert id="save" parameterType="org.yejh.shop.entity.UserInfo">
+  INSERT INTO user_info(uname, unumber, uregister_time)
+  VALUES
+  (
+    #{uName, jdbcType=VARCHAR}, #{uNumber, jdbcType=INTEGER}, #{uRegisterTime, jdbcType=TIMESTAMP}
+  )
+</insert>
 </mapper>

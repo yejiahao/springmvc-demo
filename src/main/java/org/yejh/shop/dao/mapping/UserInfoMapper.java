@@ -5,5 +5,7 @@ import java.util.List;
 import org.yejh.shop.entity.UserInfo;
 
 public interface UserInfoMapper {
-	List<UserInfo> getUserInfoList();
+	List<UserInfo> getUserInfo(UserInfo userInfo);
+
+	Integer save(UserInfo userInfo);
 }

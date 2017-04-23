@@ -1,11 +1,11 @@
-package org.yejh.shop.dto;
+package org.yejh.shop.entity;
 
 import java.io.Serializable;
 
 /**
  * Created by Ye Jiahao on 2017/03/19.
  */
-public class LocationDto implements Serializable {
+public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String provincePostCode;
 	private String provinceName;
@@ -14,10 +14,10 @@ public class LocationDto implements Serializable {
 	private String areaPostCode;
 	private String areaName;
 
-	public LocationDto() {
+	public Location() {
 	}
 
-	public LocationDto(String provincePostCode, String provinceName, String cityPostCode, String cityName,
+	public Location(String provincePostCode, String provinceName, String cityPostCode, String cityName,
 			String areaPostCode, String areaName) {
 		this.provincePostCode = provincePostCode;
 		this.provinceName = provinceName;
