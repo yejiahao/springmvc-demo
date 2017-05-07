@@ -10,6 +10,6 @@
 <%@ include file="/header.jsp" %>
 
 <body>
-<h3><b>500系统内部错误，请联系管理员！</b></h3>
+<h3><b>系统内部错误，请联系管理员！</b></h3>
 </body>
 </html>
