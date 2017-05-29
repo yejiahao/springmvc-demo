@@ -3,7 +3,8 @@
 <html>
 <head lang="zh-CN">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/image/favicon.ico">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <title>系统网站</title>

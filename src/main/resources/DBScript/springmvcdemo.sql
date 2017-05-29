@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : Local
 Source Server Version : 50156
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : springmvcdemo
 
 Target Server Type    : MYSQL
 Target Server Version : 50156
 File Encoding         : 65001
 
-Date: 2017-04-11 14:33:30
+Date: 2017-05-30 02:22:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,10 +20,10 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `course_info`;
 CREATE TABLE `course_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
   `cname` varchar(255) DEFAULT NULL,
   `caddress` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -31,54 +31,42 @@ CREATE TABLE `course_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for course_user_info
+-- Table structure for course_stud_info
 -- ----------------------------
-DROP TABLE IF EXISTS `course_user_info`;
-CREATE TABLE `course_user_info` (
+DROP TABLE IF EXISTS `course_stud_info`;
+CREATE TABLE `course_stud_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
+  `sid` int(11) DEFAULT NULL,
   `cid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of course_user_info
+-- Records of course_stud_info
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for user_info
+-- Table structure for stud_info
 -- ----------------------------
-DROP TABLE IF EXISTS `user_info`;
-CREATE TABLE `user_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uname` varchar(255) DEFAULT NULL,
-  `unumber` int(11) DEFAULT NULL,
-  `uregister_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_uname_unumber` (`id`,`uname`,`unumber`),
-  KEY `id_uname` (`id`,`uname`)
-) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `stud_info`;
+CREATE TABLE `stud_info` (
+  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `sname` varchar(255) DEFAULT NULL,
+  `snumber` int(11) DEFAULT NULL,
+  `sregister_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`sid`),
+  KEY `id_sname_snumber` (`sid`,`sname`,`snumber`),
+  KEY `id_sname` (`sid`,`sname`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user_info
+-- Records of stud_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('1', '叶嘉豪', '3457', '2017-01-09 13:59:09');
-INSERT INTO `user_info` VALUES ('2', '邓立光', '3458', '2011-08-28 11:10:20');
-INSERT INTO `user_info` VALUES ('3', '庄思贵', '3459', '2017-01-10 23:22:24');
-INSERT INTO `user_info` VALUES ('4', '朱远飞', '3460', '2013-03-19 09:20:30');
-INSERT INTO `user_info` VALUES ('5', '郭梦凡', '100', '2017-01-11 11:38:59');
-INSERT INTO `user_info` VALUES ('42', '郭梦凡', '100', '2017-03-31 18:04:33');
-INSERT INTO `user_info` VALUES ('41', '郭梦凡', '100', '2017-03-30 19:38:00');
-INSERT INTO `user_info` VALUES ('40', '郭梦凡', '100', '2017-03-27 18:14:00');
-INSERT INTO `user_info` VALUES ('39', '郭梦凡', '100', '2017-03-27 15:28:58');
-INSERT INTO `user_info` VALUES ('38', '郭梦凡', '100', '2017-03-25 15:17:18');
-INSERT INTO `user_info` VALUES ('37', '郭梦凡', '100', '2017-03-25 15:08:51');
-INSERT INTO `user_info` VALUES ('36', '郭梦凡', '100', '2017-03-25 15:07:18');
-INSERT INTO `user_info` VALUES ('35', '郭梦凡', '100', '2017-03-22 18:03:18');
-INSERT INTO `user_info` VALUES ('34', '郭梦凡', '100', '2017-03-22 17:48:28');
-INSERT INTO `user_info` VALUES ('33', '郭梦凡', '100', '2017-03-22 17:39:30');
-INSERT INTO `user_info` VALUES ('32', '郭梦凡', '100', '2017-03-22 17:34:31');
-INSERT INTO `user_info` VALUES ('31', '郭梦凡', '100', '2017-03-21 19:48:22');
-INSERT INTO `user_info` VALUES ('30', '郭梦凡', '100', '2017-03-21 15:50:13');
-INSERT INTO `user_info` VALUES ('29', '郭梦凡', '100', '2017-03-21 15:42:09');
-INSERT INTO `user_info` VALUES ('28', '郭梦凡', '100', '2017-03-20 17:46:49');
+INSERT INTO `stud_info` VALUES ('1', '叶嘉豪', '3457', '2017-01-01 13:59:09');
+INSERT INTO `stud_info` VALUES ('2', '郭梦凡', '8017', '2017-04-10 12:12:12');
+INSERT INTO `stud_info` VALUES ('3', '邓立光', '3458', '2011-08-28 11:10:20');
+INSERT INTO `stud_info` VALUES ('4', '庄思贵', '3459', '2012-07-13 23:22:24');
+INSERT INTO `stud_info` VALUES ('5', '朱远飞', '3460', '2013-03-19 09:20:30');
+INSERT INTO `stud_info` VALUES ('6', '李志坚', '5270', '2011-09-12 12:30:25');
+INSERT INTO `stud_info` VALUES ('7', '黄伟强', '5271', '2005-07-23 21:33:59');
+INSERT INTO `stud_info` VALUES ('8', '王军', '9754', '2014-10-06 09:38:00');

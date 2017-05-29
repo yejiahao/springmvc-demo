@@ -10,26 +10,26 @@ import org.yejh.shop.entity.UserInfo;
 
 @Repository("userInfoDao")
 public class UserInfoDaoImpl implements UserInfoDao {
-	@Autowired
-	private UserInfoMapper mapper;
+    @Autowired
+    private UserInfoMapper mapper;
 
-	@Override
-	public UserInfo getById(Integer id) throws Exception {
-		UserInfo userInfo = new UserInfo();
-		userInfo.setId(id);
-		userInfo = mapper.getUserInfo(userInfo).get(0);
-		return userInfo;
-	}
+    @Override
+    public UserInfo getById(Integer id) throws Exception {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(id);
+        userInfo = mapper.getUserInfo(userInfo).get(0);
+        return userInfo;
+    }
 
-	@Override
-	public List<UserInfo> findAll() throws Exception {
-		List<UserInfo> userInfoList = mapper.getUserInfo(null);
-		return userInfoList;
-	}
+    @Override
+    public List<UserInfo> findAll() throws Exception {
+        List<UserInfo> userInfoList = mapper.getUserInfo(null);
+        return userInfoList;
+    }
 
-	@Override
-	public Integer save(UserInfo userInfo) throws Exception {
-		Integer result = mapper.save(userInfo);
-		return result;
-	}
+    @Override
+    public Integer save(UserInfo userInfo) throws Exception {
+        Integer result = mapper.save(userInfo);
+        return result;
+    }
 }

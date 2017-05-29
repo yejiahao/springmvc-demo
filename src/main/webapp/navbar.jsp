@@ -9,18 +9,18 @@
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">系统网站</a>
+            <a class="navbar-brand" href="#"><img alt="Brand"
+                                                  src="${pageContext.request.contextPath}/image/logo.png"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">用户管理</a></li>
-                <li><a href="#">系统管理</a></li>
+                <li id="mainli"><a href="${pageContext.request.contextPath}/login/login.do">首页</a>
+                </li>
+                <li id="studentli"><a href="${pageContext.request.contextPath}/stud/showStudInfos.do">学生管理</a></li>
+                <li id="courseli"><a href="#">课程管理</a></li>
             </ul>
             <form class="navbar-form navbar-left">
                 <div class="form-group">
@@ -29,10 +29,11 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">用户管理</a></li>
                 <li><a href="#">系统管理</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown<span class="caret"></span></a>
+                       aria-expanded="false">${loginUser['account']}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
                         <li role="separator" class="divider"></li>
@@ -45,4 +46,10 @@
     </div><!-- /.container-fluid -->
 </nav>
 </body>
+<script>
+    function acitveTabById(id) {
+        $('.nav.navbar-nav').children().removeClass('active');
+        $('#' + id).addClass('active');
+    }
+</script>
 </html>

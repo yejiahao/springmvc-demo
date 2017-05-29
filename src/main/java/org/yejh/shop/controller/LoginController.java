@@ -1,10 +1,5 @@
 package org.yejh.shop.controller;
 
-import java.io.File;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.yejh.shop.entity.User;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -21,9 +21,21 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping(value = "/login")
-    public String login(@RequestParam String account, @RequestParam String password) {
-        logger.info("account: {}\tpassword: {}", account, password);
-        return "/main";
+    public ModelAndView login(String account, String password, HttpSession session) {
+        ModelAndView mv = new ModelAndView("/main");
+        if (session.getAttribute("loginUser") != null) {
+            logger.info("{} have been logined", session.getAttribute("loginUser"));
+        } else {
+            logger.info("account: {}\tpassword: {}", account, password);
+            if ("yejiahao".equals(account) && "123".equals(password)) {
+                User user = new User(account, password);
+                session.setAttribute("loginUser", user);
+            } else {
+                logger.info("login: account or password error");
+                mv.setViewName("redirect:/login.jsp");
+            }
+        }
+        return mv;
     }
 
     @RequestMapping(value = "/uploadFile")

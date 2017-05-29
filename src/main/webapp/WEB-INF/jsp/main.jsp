@@ -8,12 +8,16 @@
     request.setAttribute("now", dt.format(new Date()));%>
 <body>
 <%@ include file="/navbar.jsp" %>
-<div style="margin-top: 60px">
-    <h2 style="text-align: center">欢迎来到系统网站</h2>
+<div style="margin-top: 80px">
+    <h2 style="text-align: center"><span style="color: dodgerblue">${loginUser['account']}</span>, 欢迎来到系统网站</h2>
     <br>
     <h3 style="text-align: center">登录时间： ${now}</h3>
 
 </div>
-
 </body>
+<script>
+    $(function () {
+        acitveTabById('mainli');
+    });
+</script>
 </html>

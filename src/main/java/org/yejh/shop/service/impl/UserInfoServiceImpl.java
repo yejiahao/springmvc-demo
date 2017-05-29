@@ -13,42 +13,42 @@ import org.yejh.shop.service.UserInfoService;
 
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
-	private static final Logger logger = LoggerFactory.getLogger(UserInfoServiceImpl.class);
-	@Autowired
-	@Qualifier(value = "userInfoDao")
-	private UserInfoDao userInfoDao;
+    private static final Logger logger = LoggerFactory.getLogger(UserInfoServiceImpl.class);
+    @Autowired
+    @Qualifier(value = "userInfoDao")
+    private UserInfoDao userInfoDao;
 
-	@Override
-	public UserInfo getById(Integer id) {
-		try {
-			UserInfo userInfo = userInfoDao.getById(id);
-			return userInfo;
-		} catch (Exception e) {
-			logger.error("getById: ", e);
-			return null;
-		}
-	}
+    @Override
+    public UserInfo getById(Integer id) {
+        try {
+            UserInfo userInfo = userInfoDao.getById(id);
+            return userInfo;
+        } catch (Exception e) {
+            logger.error("getById: ", e);
+            return null;
+        }
+    }
 
-	@Override
-	public List<UserInfo> findAll() {
-		try {
-			List<UserInfo> userInfoList = userInfoDao.findAll();
-			return userInfoList;
-		} catch (Exception e) {
-			logger.error("findAll: ", e);
-			return null;
-		}
-	}
+    @Override
+    public List<UserInfo> findAll() {
+        try {
+            List<UserInfo> userInfoList = userInfoDao.findAll();
+            return userInfoList;
+        } catch (Exception e) {
+            logger.error("findAll: ", e);
+            return null;
+        }
+    }
 
-	@Override
-	public Integer save(UserInfo userInfo) {
-		try {
-			Integer affectedCount = userInfoDao.save(userInfo);
-			return affectedCount;
-		} catch (Exception e) {
-			logger.error("save: ", e);
-			return null;
-		}
-	}
+    @Override
+    public Integer save(UserInfo userInfo) {
+        try {
+            Integer affectedCount = userInfoDao.save(userInfo);
+            return affectedCount;
+        } catch (Exception e) {
+            logger.error("save: ", e);
+            return null;
+        }
+    }
 
 }
