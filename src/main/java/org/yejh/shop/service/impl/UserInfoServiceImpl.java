@@ -21,33 +21,30 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo getById(Integer id) {
         try {
-            UserInfo userInfo = userInfoDao.getById(id);
-            return userInfo;
+            return userInfoDao.getById(id);
         } catch (Exception e) {
             logger.error("getById: ", e);
-            return null;
+            throw e;
         }
     }
 
     @Override
     public List<UserInfo> findAll() {
         try {
-            List<UserInfo> userInfoList = userInfoDao.findAll();
-            return userInfoList;
+            return userInfoDao.findAll();
         } catch (Exception e) {
             logger.error("findAll: ", e);
-            return null;
+            throw e;
         }
     }
 
     @Override
     public Integer save(UserInfo userInfo) {
         try {
-            Integer affectedCount = userInfoDao.save(userInfo);
-            return affectedCount;
+            return userInfoDao.save(userInfo);
         } catch (Exception e) {
             logger.error("save: ", e);
-            return null;
+            throw e;
         }
     }
 

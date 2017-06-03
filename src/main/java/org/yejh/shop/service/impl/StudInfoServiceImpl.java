@@ -28,9 +28,8 @@ public class StudInfoServiceImpl implements StudInfoService {
             return studInfoDao.getById(sid);
         } catch (Exception e) {
             logger.error("getById: ", e);
-            return null;
+            throw e;
         }
-
     }
 
     @Override
@@ -39,7 +38,7 @@ public class StudInfoServiceImpl implements StudInfoService {
             return studInfoDao.findAll();
         } catch (Exception e) {
             logger.error("findAll: ", e);
-            return null;
+            throw e;
         }
     }
 
@@ -49,7 +48,7 @@ public class StudInfoServiceImpl implements StudInfoService {
             return studInfoDao.save(studInfo);
         } catch (Exception e) {
             logger.error("save: ", e);
-            return null;
+            throw e;
         }
     }
 }

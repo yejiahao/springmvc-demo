@@ -14,7 +14,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
     private UserInfoMapper mapper;
 
     @Override
-    public UserInfo getById(Integer id) throws Exception {
+    public UserInfo getById(Integer id) {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(id);
         userInfo = mapper.getUserInfo(userInfo).get(0);
@@ -22,14 +22,24 @@ public class UserInfoDaoImpl implements UserInfoDao {
     }
 
     @Override
-    public List<UserInfo> findAll() throws Exception {
+    public List<UserInfo> findAll() {
         List<UserInfo> userInfoList = mapper.getUserInfo(null);
         return userInfoList;
     }
 
     @Override
-    public Integer save(UserInfo userInfo) throws Exception {
+    public Integer save(UserInfo userInfo) {
         Integer result = mapper.save(userInfo);
         return result;
+    }
+
+    @Override
+    public Integer update(UserInfo entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer id) {
+
     }
 }

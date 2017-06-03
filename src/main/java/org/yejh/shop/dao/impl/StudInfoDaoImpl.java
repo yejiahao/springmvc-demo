@@ -17,7 +17,7 @@ public class StudInfoDaoImpl implements StudInfoDao {
     private StudInfoMapper mapper;
 
     @Override
-    public StudInfo getById(Integer id) throws Exception {
+    public StudInfo getById(Integer id) {
         StudInfo studInfo = new StudInfo();
         studInfo.setsId(id);
         studInfo = mapper.getStudInfo(studInfo).get(0);
@@ -25,14 +25,24 @@ public class StudInfoDaoImpl implements StudInfoDao {
     }
 
     @Override
-    public List<StudInfo> findAll() throws Exception {
+    public List<StudInfo> findAll() {
         List<StudInfo> studInfoList = mapper.getStudInfo(null);
         return studInfoList;
     }
 
     @Override
-    public Integer save(StudInfo studInfo) throws Exception {
+    public Integer save(StudInfo studInfo) {
         Integer result = mapper.save(studInfo);
         return result;
+    }
+
+    @Override
+    public Integer update(StudInfo entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer id) {
+
     }
 }

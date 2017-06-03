@@ -37,7 +37,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/login/logout.do"><span
+                        <li id="exitli"><a href="${pageContext.request.contextPath}/login/logout.do"><span
                                 class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 退出</a></li>
                     </ul>
                 </li>
