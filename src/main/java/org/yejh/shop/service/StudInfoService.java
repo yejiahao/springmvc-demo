@@ -10,7 +10,9 @@ import java.util.List;
 public interface StudInfoService {
     StudInfo getById(Integer sid);
 
-    List<StudInfo> findAll();
+    List<StudInfo> findAll(int pageOffset, int pageLength);
 
     Integer save(StudInfo studInfo);
+
+    Integer totalCounts();
 }

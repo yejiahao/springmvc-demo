@@ -46,10 +46,4 @@
     </div><!-- /.container-fluid -->
 </nav>
 </body>
-<script>
-    function acitveTabById(id) {
-        $('.nav.navbar-nav').children().removeClass('active');
-        $('#' + id).addClass('active');
-    }
-</script>
 </html>

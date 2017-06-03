@@ -1,6 +1,8 @@
 package org.yejh.shop.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,13 +19,16 @@ public class UserInfoDaoImpl implements UserInfoDao {
     public UserInfo getById(Integer id) {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(id);
-        userInfo = mapper.getUserInfo(userInfo).get(0);
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("userInfo", userInfo);
+        userInfo = mapper.getUserInfo(dataMap).get(0);
         return userInfo;
     }
 
     @Override
-    public List<UserInfo> findAll() {
-        List<UserInfo> userInfoList = mapper.getUserInfo(null);
+    public List<UserInfo> findAll(int offset, int length) {
+        Map<String, Object> dataMap = new HashMap<>();
+        List<UserInfo> userInfoList = mapper.getUserInfo(dataMap);
         return userInfoList;
     }
 
@@ -41,5 +46,10 @@ public class UserInfoDaoImpl implements UserInfoDao {
     @Override
     public void delete(Integer id) {
 
+    }
+
+    @Override
+    public Integer totalCounts() {
+        return null;
     }
 }

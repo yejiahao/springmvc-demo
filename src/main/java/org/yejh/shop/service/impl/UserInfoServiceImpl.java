@@ -31,7 +31,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public List<UserInfo> findAll() {
         try {
-            return userInfoDao.findAll();
+            int offset = 0;
+            int length = 10;
+            return userInfoDao.findAll(offset, length);
         } catch (Exception e) {
             logger.error("findAll: ", e);
             throw e;

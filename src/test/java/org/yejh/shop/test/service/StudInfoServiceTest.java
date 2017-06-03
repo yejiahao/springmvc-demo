@@ -19,7 +19,7 @@ import org.yejh.shop.service.StudInfoService;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:/applicationContext.xml", "classpath*:/mybatis/*.xml" })
+@ContextConfiguration(locations = {"classpath*:/applicationContext.xml", "classpath*:/mybatis/*.xml"})
 public class StudInfoServiceTest {
     private static final Logger logger = LoggerFactory.getLogger(StudInfoServiceTest.class);
 
@@ -46,7 +46,9 @@ public class StudInfoServiceTest {
 
     @Test
     public void testFindAll() {
-        List<StudInfo> studentList = studInfoService.findAll();
+        int pageOffset = 0;
+        int pageLength = 10;
+        List<StudInfo> studentList = studInfoService.findAll(pageOffset, pageLength);
         for (int i = 0; i < studentList.size(); i++) {
             logger.info(JSON.toJSONStringWithDateFormat(studentList.get(i), "yyyy-MM-dd HH:mm:ss"));
         }

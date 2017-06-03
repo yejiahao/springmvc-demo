@@ -7,7 +7,7 @@
         <result column="snumber" property="sNumber" jdbcType="INTEGER"/>
         <result column="sregister_time" property="sRegisterTime" jdbcType="TIMESTAMP"/>
     </resultMap>
-    <select id="getStudInfo" resultMap="studInfoRM" parameterType="org.yejh.shop.entity.StudInfo">
+    <select id="getStudInfo" resultMap="studInfoRM" parameterType="java.util.HashMap">
         SELECT *
         FROM
         stud_info
@@ -16,6 +16,8 @@
                 AND sid = #{sId}
             </if>
         </where>
+        ORDER BY sid
+        LIMIT #{offset}, #{length}
     </select>
 
     <insert id="save" parameterType="org.yejh.shop.entity.StudInfo">
@@ -25,4 +27,10 @@
         #{sName, jdbcType=VARCHAR}, #{sNumber, jdbcType=INTEGER}, #{sRegisterTime, jdbcType=TIMESTAMP}
         )
     </insert>
+
+    <select id="totalCounts" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM
+        stud_info
+    </select>
 </mapper>

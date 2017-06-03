@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:context="http://www.springframework.org/schema/context"
-xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.2.xsd
 ">
 
-<context:property-placeholder location="classpath*:/jdbc.properties"/>
-<context:component-scan base-package="org.yejh.shop.dao.impl,org.yejh.shop.service.impl"/>
+    <context:property-placeholder location="classpath*:/jdbc.properties"/>
+    <context:component-scan base-package="org.yejh.shop.dao.impl,org.yejh.shop.service.impl"/>
 
     <!-- 数据源的配置 -->
- 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		init-method="init" destroy-method="close">
-		<!--  基本属性 url、username、password-->
-		<property name="url" value="${jdbc.url}"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <!--  基本属性 url、username、password-->
+        <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
 
-		<property name="initialSize" value="0" />
-		<property name="maxActive" value="20" />
-		
-		<property name="minIdle" value="0" />
-		<property name="maxWait" value="60000" />
-        <property name="poolPreparedStatements" value="true" />
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="33" />
-            
-		<!-- 用来检测有效sql -->
-		<property name="validationQuery" value="SELECT 1" />
-		<property name="testOnBorrow" value="false" />
-		<property name="testOnReturn" value="false" />
-		<property name="testWhileIdle" value="true" />
-		
-		<property name="timeBetweenEvictionRunsMillis" value="60000" />
-		<property name="minEvictableIdleTimeMillis" value="25200000" />
+        <property name="initialSize" value="0"/>
+        <property name="maxActive" value="20"/>
 
-        <property name="removeAbandoned" value="true" />
-        <property name="removeAbandonedTimeout" value="1800" />
-        <property name="logAbandoned" value="true" />
-        
-		<property name="filters" value="mergeStat" />
-	</bean>
+        <property name="minIdle" value="0"/>
+        <property name="maxWait" value="60000"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="33"/>
+
+        <!-- 用来检测有效sql -->
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="testWhileIdle" value="true"/>
+
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="25200000"/>
+
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="1800"/>
+        <property name="logAbandoned" value="true"/>
+
+        <property name="filters" value="mergeStat"/>
+    </bean>
 
     <!-- mybatis -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource"/>
-      <property name="mapperLocations" value="classpath*:/mybatis/*.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:/mybatis/*.xml"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-      <property name="basePackage" value="org.yejh.shop.dao.mapping"/>
-      <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="org.yejh.shop.dao.mapping"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-<!--  配置事物管理 -->
-<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-  <property name="dataSource" ref="dataSource"/>
-</bean>
+    <!--  配置事物管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
-<!--  声明式事务，事务拦截器 -->
-<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
-  <property name="transactionManager" ref="transactionManager"/>
-  <property name="transactionAttributes">
-    <props>
-      <prop key="save*">PROPAGATION_REQUIRED</prop>
-      <prop key="del*">PROPAGATION_REQUIRED</prop>
-      <prop key="update*">PROPAGATION_REQUIRED</prop>
-      
-      <prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
-      <prop key="find*">PROPAGATION_SUPPORTS,readOnly</prop>
-      <prop key="*">PROPAGATION_REQUIRED</prop>
-    </props>
-  </property>
-</bean>
+    <!--  声明式事务，事务拦截器 -->
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+                <prop key="del*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
 
-<!--  Bean后处理器，根据List配置创建事务代理-->
-<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-  <property name="beanNames">
-    <list>
-      <value>*Service</value>
-    </list>
-  </property>
-  <property name="interceptorNames">
-    <list>
-      <value>transactionInterceptor</value>
-    </list>
-  </property>
-</bean>
+                <prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+                <prop key="find*">PROPAGATION_SUPPORTS,readOnly</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--  Bean后处理器，根据List配置创建事务代理-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>*Service</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value>
+            </list>
+        </property>
+    </bean>
 </beans>

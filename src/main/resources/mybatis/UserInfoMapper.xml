@@ -7,7 +7,7 @@
   <result column="unumber" property="uNumber" jdbcType="INTEGER" />
   <result column="uregister_time" property="uRegisterTime" jdbcType="TIMESTAMP" />
 </resultMap>
-<select id="getUserInfo" resultMap="userInfoRM" parameterType="org.yejh.shop.entity.UserInfo">
+<select id="getUserInfo" resultMap="userInfoRM" parameterType="java.util.HashMap">
   SELECT * 
   FROM 
   user_info
@@ -16,6 +16,7 @@
       AND id = #{id}
     </if>
   </where>
+  LIMIT #{offset}, #{length}
 </select>
 
 <insert id="save" parameterType="org.yejh.shop.entity.UserInfo">

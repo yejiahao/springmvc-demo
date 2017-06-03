@@ -6,7 +6,9 @@ import org.yejh.shop.dao.StudInfoDao;
 import org.yejh.shop.dao.mapping.StudInfoMapper;
 import org.yejh.shop.entity.StudInfo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/5/30.
@@ -20,13 +22,18 @@ public class StudInfoDaoImpl implements StudInfoDao {
     public StudInfo getById(Integer id) {
         StudInfo studInfo = new StudInfo();
         studInfo.setsId(id);
-        studInfo = mapper.getStudInfo(studInfo).get(0);
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("studInfo", studInfo);
+        studInfo = mapper.getStudInfo(dataMap).get(0);
         return studInfo;
     }
 
     @Override
-    public List<StudInfo> findAll() {
-        List<StudInfo> studInfoList = mapper.getStudInfo(null);
+    public List<StudInfo> findAll(int offset, int length) {
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("offset", offset);
+        dataMap.put("length", length);
+        List<StudInfo> studInfoList = mapper.getStudInfo(dataMap);
         return studInfoList;
     }
 
@@ -44,5 +51,10 @@ public class StudInfoDaoImpl implements StudInfoDao {
     @Override
     public void delete(Integer id) {
 
+    }
+
+    @Override
+    public Integer totalCounts() {
+        return mapper.totalCounts();
     }
 }

@@ -33,9 +33,9 @@ public class StudInfoServiceImpl implements StudInfoService {
     }
 
     @Override
-    public List<StudInfo> findAll() {
+    public List<StudInfo> findAll(int pageOffset, int pageLength) {
         try {
-            return studInfoDao.findAll();
+            return studInfoDao.findAll(pageOffset, pageLength);
         } catch (Exception e) {
             logger.error("findAll: ", e);
             throw e;
@@ -48,6 +48,16 @@ public class StudInfoServiceImpl implements StudInfoService {
             return studInfoDao.save(studInfo);
         } catch (Exception e) {
             logger.error("save: ", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public Integer totalCounts() {
+        try {
+            return studInfoDao.totalCounts();
+        } catch (Exception e) {
+            logger.error("totalCount: ", e);
             throw e;
         }
     }

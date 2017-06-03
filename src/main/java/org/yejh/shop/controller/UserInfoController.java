@@ -23,8 +23,8 @@ import com.alibaba.fastjson.JSON;
 
 @Controller
 @RequestMapping(value = "/user")
-public class UserInfoController {
-    private static final Logger logger = Logger.getLogger(UserInfoController.class);
+public class UserInfoController extends BaseController {
+    private static final Logger LOG = Logger.getLogger(UserInfoController.class);
 
     @Autowired
     @Qualifier(value = "userInfoService")
@@ -32,7 +32,7 @@ public class UserInfoController {
 
     @RequestMapping(value = "/showInfo/{userId}")
     public String showUserInfo(ModelMap modelMap, @PathVariable int userId) {
-        logger.info("查看单个用户userId： " + userId);
+        LOG.info("查看单个用户userId： " + userId);
         UserInfo userInfo = userInfoService.getById(userId);
         modelMap.addAttribute("userInfo", userInfo);
         modelMap.addAttribute("now", new Date());
@@ -42,7 +42,7 @@ public class UserInfoController {
     @RequestMapping(value = "/showInfos")
     public ModelAndView showUserInfos() {
         List<UserInfo> userInfoList = userInfoService.findAll();
-        logger.info("查看全部用户: " + userInfoList);
+        LOG.info("查看全部用户: " + userInfoList);
         ModelAndView mv = new ModelAndView();
         mv.addObject(userInfoList);
         mv.setViewName("/student/studentlist");

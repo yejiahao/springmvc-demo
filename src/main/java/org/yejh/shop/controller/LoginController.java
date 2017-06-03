@@ -17,21 +17,21 @@ import java.io.File;
 
 @Controller
 @RequestMapping(value = "/login")
-public class LoginController {
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+public class LoginController extends BaseController {
+    private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping(value = "/login")
     public ModelAndView login(String account, String password, HttpSession session) {
         ModelAndView mv = new ModelAndView("/main");
         if (session.getAttribute("loginUser") != null) {
-            logger.info("{} have been logined", session.getAttribute("loginUser"));
+            LOG.info("{} have been logined", session.getAttribute("loginUser"));
         } else {
-            logger.info("account: {}\tpassword: {}", account, password);
+            LOG.info("account: {}\tpassword: {}", account, password);
             if ("yejiahao".equals(account) && "123".equals(password)) {
                 User user = new User(account, password);
                 session.setAttribute("loginUser", user);
             } else {
-                logger.info("login: account or password error");
+                LOG.info("login: account or password error");
                 mv.setViewName("redirect:/login.jsp");
             }
         }
@@ -44,8 +44,8 @@ public class LoginController {
         String parent = request.getSession().getServletContext().getRealPath("upload");
         String child = file.getOriginalFilename();
 
-        logger.info("parent: {}", parent);
-        logger.info("child: {}", child);
+        LOG.info("parent: {}", parent);
+        LOG.info("child: {}", child);
 
         File newFile = new File(parent, child);
         if (!newFile.exists()) {
@@ -55,17 +55,17 @@ public class LoginController {
         try {
             file.transferTo(newFile);
         } catch (Exception e) {
-            logger.error("uploadFile transferTo: ", e);
+            LOG.error("uploadFile transferTo: ", e);
         }
 
         model.addAttribute("filePath", request.getContextPath() + "/upload/" + child);
-        logger.info("uploading file...");
+        LOG.info("uploading file...");
         return "/uploadSuccess";
     }
 
     @RequestMapping(value = "/logout", method = {RequestMethod.GET})
     public ModelAndView logout(HttpSession session) {
-        logger.info("session: {}", session);
+        LOG.info("session: {}", session);
         session.invalidate();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("redirect:/login.jsp");

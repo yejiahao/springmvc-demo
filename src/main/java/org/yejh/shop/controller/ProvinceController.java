@@ -23,60 +23,60 @@ import org.yejh.shop.utils.XmlUtil;
 
 @Controller
 @RequestMapping(value = "/province")
-public class ProvinceController {
-	private static final Logger logger = LoggerFactory.getLogger(ProvinceController.class);
+public class ProvinceController extends BaseController {
+    private static final Logger LOG = LoggerFactory.getLogger(ProvinceController.class);
 
-	@RequestMapping(value = "/getProvinces", method = { RequestMethod.GET })
-	@ResponseBody
-	public Object getProvinces(HttpSession session) {
-		try {
-			Element root = XmlUtil.getRootElement(session, "/city.xml");
-			List<Map<String, String>> list = XmlUtil.getSubAttr(root, "province");
-			return list;
-		} catch (Exception e) {
-			logger.error("getProvinces: ", e);
-		}
-		return null;
-	}
+    @RequestMapping(value = "/getProvinces", method = {RequestMethod.GET})
+    @ResponseBody
+    public Object getProvinces(HttpSession session) {
+        try {
+            Element root = XmlUtil.getRootElement(session, "/city.xml");
+            List<Map<String, String>> list = XmlUtil.getSubAttr(root, "province");
+            return list;
+        } catch (Exception e) {
+            LOG.error("getProvinces: ", e);
+        }
+        return null;
+    }
 
-	@RequestMapping(value = "/getCitiesByProvince", method = { RequestMethod.POST })
-	@ResponseBody
-	public Object getCitiesByProvince(HttpSession session, @RequestBody Location location) {
-		logger.info("enter getCitiesByProvince: {}", location);
-		try {
-			List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-			Element root = XmlUtil.getRootElement(session, "/city.xml");
+    @RequestMapping(value = "/getCitiesByProvince", method = {RequestMethod.POST})
+    @ResponseBody
+    public Object getCitiesByProvince(HttpSession session, @RequestBody Location location) {
+        LOG.info("enter getCitiesByProvince: {}", location);
+        try {
+            List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+            Element root = XmlUtil.getRootElement(session, "/city.xml");
 
-			Element provinceElement = XmlUtil.getSubElement(root, "province", location.getProvincePostCode());
-			if (provinceElement != null) {
-				list = XmlUtil.getSubAttr(provinceElement, "city");
-			}
-			return list;
-		} catch (Exception e) {
-			logger.error("getCitiesByProvince: ", e);
-		}
-		return null;
-	}
+            Element provinceElement = XmlUtil.getSubElement(root, "province", location.getProvincePostCode());
+            if (provinceElement != null) {
+                list = XmlUtil.getSubAttr(provinceElement, "city");
+            }
+            return list;
+        } catch (Exception e) {
+            LOG.error("getCitiesByProvince: ", e);
+        }
+        return null;
+    }
 
-	@RequestMapping(value = "/getAreasByCity", method = { RequestMethod.POST })
-	@ResponseBody
-	public Object getAreasByCity(HttpSession session, @RequestBody Location location) {
-		logger.info("enter getAreasByCities: {}", location);
-		try {
-			List<Map<String, String>> list = null;
-			Element root = XmlUtil.getRootElement(session, "/city.xml");
+    @RequestMapping(value = "/getAreasByCity", method = {RequestMethod.POST})
+    @ResponseBody
+    public Object getAreasByCity(HttpSession session, @RequestBody Location location) {
+        LOG.info("enter getAreasByCities: {}", location);
+        try {
+            List<Map<String, String>> list = null;
+            Element root = XmlUtil.getRootElement(session, "/city.xml");
 
-			Element provinceElement = XmlUtil.getSubElement(root, "province", location.getProvincePostCode());
-			if (provinceElement != null) {
-				Element cityElement = XmlUtil.getSubElement(provinceElement, "city", location.getCityPostCode());
-				if (cityElement != null) {
-					list = XmlUtil.getSubAttr(cityElement, "area");
-				}
-			}
-			return list;
-		} catch (Exception e) {
-			logger.error("getAreasByCity: ", e);
-		}
-		return null;
-	}
+            Element provinceElement = XmlUtil.getSubElement(root, "province", location.getProvincePostCode());
+            if (provinceElement != null) {
+                Element cityElement = XmlUtil.getSubElement(provinceElement, "city", location.getCityPostCode());
+                if (cityElement != null) {
+                    list = XmlUtil.getSubAttr(cityElement, "area");
+                }
+            }
+            return list;
+        } catch (Exception e) {
+            LOG.error("getAreasByCity: ", e);
+        }
+        return null;
+    }
 }
