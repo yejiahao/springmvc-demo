@@ -34,4 +34,9 @@
     </form>
 </div>
 </body>
+<script>
+    $(function () {
+        <% session.removeAttribute("errorMessage"); %>
+    });
+</script>
 </html>

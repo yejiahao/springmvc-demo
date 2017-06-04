@@ -19,9 +19,9 @@ import org.yejh.shop.service.StudInfoService;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:/applicationContext.xml", "classpath*:/mybatis/*.xml"})
+@ContextConfiguration(locations = {"classpath*:/applicationContext.xml", "classpath*:/mybatis/StudInfoMapper.xml"})
 public class StudInfoServiceTest {
-    private static final Logger logger = LoggerFactory.getLogger(StudInfoServiceTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StudInfoServiceTest.class);
 
     @Autowired
     @Qualifier(value = "studInfoService")
@@ -29,19 +29,19 @@ public class StudInfoServiceTest {
 
     @Before
     public void beforeTest() {
-        logger.info("Before StudInfoServiceTest ----------");
+        LOG.info("Before StudInfoServiceTest ----------");
     }
 
     @After
     public void afterTest() {
-        logger.info("After StudInfoServiceTest ----------");
+        LOG.info("After StudInfoServiceTest ----------");
     }
 
     @Test
     public void testGetById() {
         Integer sId = 1;
         StudInfo student = studInfoService.getById(sId);
-        logger.info(JSON.toJSONStringWithDateFormat(student, "yyyy-MM-dd HH:mm:ss"));
+        LOG.info(JSON.toJSONStringWithDateFormat(student, "yyyy-MM-dd HH:mm:ss"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class StudInfoServiceTest {
         int pageLength = 10;
         List<StudInfo> studentList = studInfoService.findAll(pageOffset, pageLength);
         for (int i = 0; i < studentList.size(); i++) {
-            logger.info(JSON.toJSONStringWithDateFormat(studentList.get(i), "yyyy-MM-dd HH:mm:ss"));
+            LOG.info(JSON.toJSONStringWithDateFormat(studentList.get(i), "yyyy-MM-dd HH:mm:ss"));
         }
     }
 
@@ -58,6 +58,6 @@ public class StudInfoServiceTest {
     public void testSave() {
         StudInfo student = new StudInfo("Java", 8080, new Date());
         Integer count = studInfoService.save(student);
-        logger.info("count= {}", count);
+        LOG.info("count= {}", count);
     }
 }
