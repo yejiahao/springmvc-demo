@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service("studInfoService")
 public class StudInfoServiceImpl implements StudInfoService {
-    private static final Logger logger = LoggerFactory.getLogger(StudInfoServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StudInfoServiceImpl.class);
 
     @Autowired
     @Qualifier(value = "studInfoDao")
@@ -27,7 +27,7 @@ public class StudInfoServiceImpl implements StudInfoService {
         try {
             return studInfoDao.getById(sid);
         } catch (Exception e) {
-            logger.error("getById: ", e);
+            LOG.error("getById: ", e);
             throw e;
         }
     }
@@ -37,7 +37,7 @@ public class StudInfoServiceImpl implements StudInfoService {
         try {
             return studInfoDao.findAll(pageOffset, pageLength);
         } catch (Exception e) {
-            logger.error("findAll: ", e);
+            LOG.error("findAll: ", e);
             throw e;
         }
     }
@@ -47,7 +47,7 @@ public class StudInfoServiceImpl implements StudInfoService {
         try {
             return studInfoDao.save(studInfo);
         } catch (Exception e) {
-            logger.error("save: ", e);
+            LOG.error("save: ", e);
             throw e;
         }
     }
@@ -57,7 +57,7 @@ public class StudInfoServiceImpl implements StudInfoService {
         try {
             return studInfoDao.totalCounts();
         } catch (Exception e) {
-            logger.error("totalCount: ", e);
+            LOG.error("totalCount: ", e);
             throw e;
         }
     }

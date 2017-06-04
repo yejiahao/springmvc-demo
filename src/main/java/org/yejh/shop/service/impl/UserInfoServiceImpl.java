@@ -13,7 +13,7 @@ import org.yejh.shop.service.UserInfoService;
 
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
-    private static final Logger logger = LoggerFactory.getLogger(UserInfoServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserInfoServiceImpl.class);
     @Autowired
     @Qualifier(value = "userInfoDao")
     private UserInfoDao userInfoDao;
@@ -23,7 +23,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         try {
             return userInfoDao.getById(id);
         } catch (Exception e) {
-            logger.error("getById: ", e);
+            LOG.error("getById: ", e);
             throw e;
         }
     }
@@ -35,7 +35,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             int length = 10;
             return userInfoDao.findAll(offset, length);
         } catch (Exception e) {
-            logger.error("findAll: ", e);
+            LOG.error("findAll: ", e);
             throw e;
         }
     }
@@ -45,7 +45,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         try {
             return userInfoDao.save(userInfo);
         } catch (Exception e) {
-            logger.error("save: ", e);
+            LOG.error("save: ", e);
             throw e;
         }
     }

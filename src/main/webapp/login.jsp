@@ -16,8 +16,8 @@
           action="${pageContext.request.contextPath}/login/login.do" method="post">
         <h2 class="form-signin-heading">Sign in</h2>
         <div class="input-group input-group-lg">
-            <span class="input-group-addon glyphicon glyphicon-envelope" aria-hidden="true"></span>
-            <input type="text" name="account" id="account" class="form-control" placeholder="用户名" required autofocus>
+            <span class="input-group-addon glyphicon glyphicon-user" aria-hidden="true"></span>
+            <input type="text" name="account" id="account" class="form-control" placeholder="邮箱/账号" required autofocus>
         </div>
         <div class="input-group input-group-lg">
             <span class="input-group-addon glyphicon glyphicon-lock" aria-hidden="true"></span>
@@ -30,8 +30,8 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
         <button class="btn btn-lg btn-block" type="reset">重置</button>
+        <span style="color:red">${errorMessage}</span>
     </form>
 </div>
-
 </body>
 </html>

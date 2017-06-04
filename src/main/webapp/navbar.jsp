@@ -33,7 +33,7 @@
                 <li><a href="#">系统管理</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">${loginUser['account']}<span class="caret"></span></a>
+                       aria-expanded="false">${loginUser['userName']}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
                         <li role="separator" class="divider"></li>

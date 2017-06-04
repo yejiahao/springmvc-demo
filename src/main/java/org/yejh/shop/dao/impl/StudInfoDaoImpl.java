@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/5/30.
  */
-@Repository(value = "studInfoDao")
+@Repository("studInfoDao")
 public class StudInfoDaoImpl implements StudInfoDao {
     @Autowired
     private StudInfoMapper mapper;
@@ -22,18 +22,18 @@ public class StudInfoDaoImpl implements StudInfoDao {
     public StudInfo getById(Integer id) {
         StudInfo studInfo = new StudInfo();
         studInfo.setsId(id);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("studInfo", studInfo);
-        studInfo = mapper.getStudInfo(dataMap).get(0);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("studInfo", studInfo);
+        studInfo = mapper.getStudInfo(paramMap).get(0);
         return studInfo;
     }
 
     @Override
     public List<StudInfo> findAll(int offset, int length) {
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("offset", offset);
-        dataMap.put("length", length);
-        List<StudInfo> studInfoList = mapper.getStudInfo(dataMap);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("offset", offset);
+        paramMap.put("length", length);
+        List<StudInfo> studInfoList = mapper.getStudInfo(paramMap);
         return studInfoList;
     }
 

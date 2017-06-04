@@ -2,6 +2,8 @@ package org.yejh.shop.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +11,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.yejh.shop.constant.Constants;
 import org.yejh.shop.entity.User;
+import org.yejh.shop.service.LoginService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController extends BaseController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    @Qualifier("loginService")
+    private LoginService loginService;
 
     @RequestMapping(value = "/login")
     public ModelAndView login(String account, String password, HttpSession session) {
@@ -27,11 +36,14 @@ public class LoginController extends BaseController {
             LOG.info("{} have been logined", session.getAttribute("loginUser"));
         } else {
             LOG.info("account: {}\tpassword: {}", account, password);
-            if ("yejiahao".equals(account) && "123".equals(password)) {
-                User user = new User(account, password);
+            Map<String, Object> resultMap = loginService.loginVerify(account, password);
+            int code = Integer.parseInt(String.valueOf(resultMap.get("code")));
+            if (code == Constants.SUCCESS_CODE) {
+                User user = (User) resultMap.get("user");
                 session.setAttribute("loginUser", user);
             } else {
-                LOG.info("login: account or password error");
+                String errorMessage = String.valueOf(resultMap.get("message"));
+                session.setAttribute("errorMessage", errorMessage);
                 mv.setViewName("redirect:/login.jsp");
             }
         }

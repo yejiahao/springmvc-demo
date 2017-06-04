@@ -27,20 +27,6 @@
             currentPage: ${currentPage},
             totalPages: ${totalPages},
             numberOfPages: 5,
-            itemTexts: function (type, page) {
-                switch (type) {
-                    case "first":
-                        return "首页";
-                    case "prev":
-                        return "上页";
-                    case "next":
-                        return "下页";
-                    case "last":
-                        return "尾页";
-                    case "page":
-                        return page;
-                }
-            },
             onPageClicked: function (event, originalEvent, type, page) {
                 loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos.do', page);
             }

@@ -19,16 +19,16 @@ public class UserInfoDaoImpl implements UserInfoDao {
     public UserInfo getById(Integer id) {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(id);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("userInfo", userInfo);
-        userInfo = mapper.getUserInfo(dataMap).get(0);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userInfo", userInfo);
+        userInfo = mapper.getUserInfo(paramMap).get(0);
         return userInfo;
     }
 
     @Override
     public List<UserInfo> findAll(int offset, int length) {
-        Map<String, Object> dataMap = new HashMap<>();
-        List<UserInfo> userInfoList = mapper.getUserInfo(dataMap);
+        Map<String, Object> paramMap = new HashMap<>();
+        List<UserInfo> userInfoList = mapper.getUserInfo(paramMap);
         return userInfoList;
     }
 
