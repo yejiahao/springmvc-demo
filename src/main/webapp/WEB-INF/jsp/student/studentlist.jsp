@@ -28,7 +28,7 @@
             totalPages: ${totalPages},
             numberOfPages: 5,
             onPageClicked: function (event, originalEvent, type, page) {
-                loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos.do', page);
+                loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', page);
             }
         }
         $('#pageLayerul').bootstrapPaginator(options);

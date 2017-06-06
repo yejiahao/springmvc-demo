@@ -13,7 +13,7 @@
 </div>
 <div class="container" style="position: relative;z-index: 1;">
     <form style="max-width: 400px;padding: 15px;margin: 150px auto"
-          action="${pageContext.request.contextPath}/login/login.do" method="post">
+          action="${pageContext.request.contextPath}/login/login" method="post">
         <h2 class="form-signin-heading">Sign in</h2>
         <div class="input-group input-group-lg">
             <span class="input-group-addon glyphicon glyphicon-user" aria-hidden="true"></span>

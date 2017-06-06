@@ -55,7 +55,7 @@
     $('#allUser_btn').on('click', function () {
         $.ajax({
             method: 'GET',
-            url: '${pageContext.request.contextPath}/user/showInfos.do',
+            url: '${pageContext.request.contextPath}/user/showInfos',
             data: null,
             dataType: 'json',
             success: function (data, status) {

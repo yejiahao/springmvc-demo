@@ -10,12 +10,12 @@
 <body>
 <div class="alert alert-success" role="alert">登录成功</div>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/login/uploadFile.do" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/login/uploadFile" method="post" enctype="multipart/form-data">
         <input type="file" name="file"/>
         <input type="submit" value="upload"/>
     </form>
 
-    <a id="logout" href="${pageContext.request.contextPath}/login/logout.do">退出登录</a>
+    <a id="logout" href="${pageContext.request.contextPath}/login/logout">退出登录</a>
 
     <form action="###">
         <label for="province">省份： </label>
@@ -45,7 +45,7 @@
 <script type="text/javascript">
     $(function () {
         $.ajax({
-            url: '${pageContext.request.contextPath}/province/getProvinces.do',
+            url: '${pageContext.request.contextPath}/province/getProvinces',
             method: 'GET',
             data: null,
             success: function (data) {
@@ -65,7 +65,7 @@
 
     $('#provinceSel').change(function () {
         $.ajax({
-            url: '${pageContext.request.contextPath}/province/getCitiesByProvince.do',
+            url: '${pageContext.request.contextPath}/province/getCitiesByProvince',
             method: 'POST',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify(
@@ -93,7 +93,7 @@
 
     $('#citySel').change(function () {
         $.ajax({
-            url: '${pageContext.request.contextPath}/province/getAreasByCity.do',
+            url: '${pageContext.request.contextPath}/province/getAreasByCity',
             method: 'POST',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify(
