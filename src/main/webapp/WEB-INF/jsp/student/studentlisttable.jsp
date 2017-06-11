@@ -10,11 +10,24 @@
     </thead>
     <tbody>
     <c:forEach var="student" items="${studentList}" varStatus="status">
-        <tr>
-            <td>${status.index+1}</td>
-            <td>${student.sName}</td>
-            <td>${student.sNumber}</td>
-            <td><fmt:formatDate value="${student.sRegisterTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+        <c:choose>
+            <c:when test="${status.index % 4 == 0}">
+                <tr class="success">
+            </c:when>
+            <c:when test="${status.index % 4 == 1}">
+                <tr class="danger">
+            </c:when>
+            <c:when test="${status.index % 4 == 2}">
+                <tr class="warning">
+            </c:when>
+            <c:when test="${status.index % 4 == 3}">
+                <tr class="info">
+            </c:when>
+        </c:choose>
+        <td>${status.index+1}</td>
+        <td>${student.sName}</td>
+        <td>${student.sNumber}</td>
+        <td><fmt:formatDate value="${student.sRegisterTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         </tr>
     </c:forEach>
     </tbody>
