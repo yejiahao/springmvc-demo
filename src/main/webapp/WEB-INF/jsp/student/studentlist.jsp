@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ include file="/header.jsp" %>
+<%@ include file="/header.jspf" %>
+<%@ include file="/footer.jspf" %>
 <body>
 <%@ include file="/navbar.jsp" %>
 <div style="margin-top: 80px;">

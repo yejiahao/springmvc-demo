@@ -6,7 +6,8 @@
             + request.getContextPath() + "/";
 %>
 
-<%@ include file="/header.jsp" %>
+<%@ include file="/header.jspf" %>
+<%@ include file="/footer.jspf" %>
 <script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 <body>
 <div style="position:absolute;">
@@ -33,6 +34,12 @@
         <%--<button class="btn btn-lg btn-block" type="reset">重置</button>--%>
         <span style="color:red">${errorMessage}</span>
     </form>
+
+    <%--<footer class="text-center navbar-fixed-bottom">
+        <div class="container">
+            <p>© 2017 All Rights Reserved</p>
+        </div>
+    </footer>--%>
 </div>
 </body>
 <script>

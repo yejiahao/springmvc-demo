@@ -6,7 +6,8 @@
             + request.getContextPath() + "/";
 %>
 
-<%@ include file="/header.jsp" %>
+<%@ include file="/header.jspf" %>
+<%@ include file="/footer.jspf" %>
 <body>
 <div class="alert alert-success" role="alert">登录成功</div>
 <div class="container">

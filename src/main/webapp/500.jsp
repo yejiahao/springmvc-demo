@@ -2,7 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%@ include file="/header.jsp" %>
+<%@ include file="/header.jspf" %>
+<%@ include file="/footer.jspf" %>
 
 <body>
 <h3><b><span style="color: red">系统内部错误</span>，请联系管理员！</b></h3>

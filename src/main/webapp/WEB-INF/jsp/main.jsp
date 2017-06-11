@@ -3,7 +3,8 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ include file="/header.jsp" %>
+<%@ include file="/header.jspf" %>
+<%@ include file="/footer.jspf" %>
 <%
     DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     request.setAttribute("now", dt.format(new Date()));%>
@@ -17,9 +18,9 @@
         <%request.setAttribute("color", "hotpink");%>
     </c:if>
 
-    <h2 style="text-align: center"><span style="color: ${color}">${loginUser['userName']}</span>, 欢迎来到系统网站</h2>
+    <h2 class="text-center"><span style="color: ${color}">${loginUser['userName']}</span>, 欢迎来到系统网站</h2>
     <br>
-    <h3 style="text-align: center">登录时间： ${now}</h3>
+    <h3 class="text-center">登录时间： ${now}</h3>
 
 </div>
 </body>

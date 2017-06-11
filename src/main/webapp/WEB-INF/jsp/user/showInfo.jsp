@@ -6,7 +6,8 @@
             + request.getContextPath() + "/";
 %>
 
-<%@ include file="/header.jsp" %>
+<%@ include file="/header.jspf" %>
+<%@ include file="/footer.jspf" %>
 
 <body>
 <div id="single_layer">
