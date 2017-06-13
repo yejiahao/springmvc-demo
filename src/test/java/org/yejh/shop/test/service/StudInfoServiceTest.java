@@ -48,7 +48,7 @@ public class StudInfoServiceTest {
     public void testFindAll() {
         int pageOffset = 0;
         int pageLength = 10;
-        List<StudInfo> studentList = studInfoService.findAll(pageOffset, pageLength);
+        List<StudInfo> studentList = studInfoService.findAll(new StudInfo(), pageOffset, pageLength);
         for (int i = 0; i < studentList.size(); i++) {
             LOG.info(JSON.toJSONStringWithDateFormat(studentList.get(i), "yyyy-MM-dd HH:mm:ss"));
         }

@@ -26,7 +26,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
     }
 
     @Override
-    public List<UserInfo> findAll(int offset, int length) {
+    public List<UserInfo> findAll(UserInfo userInfo, int offset, int length) {
         Map<String, Object> paramMap = new HashMap<>();
         List<UserInfo> userInfoList = mapper.getUserInfo(paramMap);
         return userInfoList;
@@ -49,7 +49,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
     }
 
     @Override
-    public Integer totalCounts() {
+    public Integer totalCounts(UserInfo userInfo) {
         return null;
     }
 }

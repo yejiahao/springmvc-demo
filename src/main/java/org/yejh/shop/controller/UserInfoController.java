@@ -40,8 +40,8 @@ public class UserInfoController extends BaseController {
     }
 
     @RequestMapping(value = "/showInfos")
-    public ModelAndView showUserInfos() {
-        List<UserInfo> userInfoList = userInfoService.findAll();
+    public ModelAndView showUserInfos(UserInfo userInfo) {
+        List<UserInfo> userInfoList = userInfoService.findAll(userInfo);
         LOG.info("查看全部用户: " + userInfoList);
         ModelAndView mv = new ModelAndView();
         mv.addObject(userInfoList);

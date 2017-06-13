@@ -1,16 +1,18 @@
 /**
  * Created by Ye Jiahao on 2017/06/04.
  */
-function loadPage(dataLayer, url, page) {
+function loadPage(dataLayer, url, data, isAsync) {
     $.ajax({
         method: 'GET',
         url: url,
+        async: isAsync,
         dataType: 'html',
-        data: {
-            'page': page
-        },
+        data: data,
         success: function (result, status) {
             $('#' + dataLayer).html(result);
+        },
+        error: function (result, status) {
+            console.error(status);
         }
     });
 }

@@ -35,11 +35,6 @@
         <span style="color:red">${errorMessage}</span>
     </form>
 
-    <%--<footer class="text-center navbar-fixed-bottom">
-        <div class="container">
-            <p>© 2017 All Rights Reserved</p>
-        </div>
-    </footer>--%>
 </div>
 </body>
 <script>

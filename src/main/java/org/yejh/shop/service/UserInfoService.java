@@ -7,7 +7,7 @@ import org.yejh.shop.entity.UserInfo;
 public interface UserInfoService {
 	UserInfo getById(Integer id);
 
-	List<UserInfo> findAll();
+	List<UserInfo> findAll(UserInfo userInfo);
 
 	Integer save(UserInfo userInfo);
 }

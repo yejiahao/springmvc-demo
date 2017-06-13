@@ -13,5 +13,5 @@ public interface StudInfoMapper {
 
     Integer save(StudInfo studInfo);
 
-    Integer totalCounts();
+    Integer totalCounts(Map<String, Object> reqMap);
 }

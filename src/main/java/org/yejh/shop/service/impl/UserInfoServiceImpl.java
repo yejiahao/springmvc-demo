@@ -29,11 +29,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public List<UserInfo> findAll() {
+    public List<UserInfo> findAll(UserInfo userInfo) {
         try {
             int offset = 0;
             int length = 10;
-            return userInfoDao.findAll(offset, length);
+            return userInfoDao.findAll(userInfo, offset, length);
         } catch (Exception e) {
             LOG.error("findAll: ", e);
             throw e;

@@ -31,6 +31,12 @@
             <button class="btn btn-success" id="search">查找</button>
         </div>
     </div>
+    <%--hidden layer--%>
+    <div>
+        <input type="hidden" id="hidden_sName"/>
+        <input type="hidden" id="hidden_sNumber"/>
+        <input type="hidden" id="hidden_sRegisterTime"/>
+    </div>
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
@@ -39,27 +45,11 @@
             <%@include file="/WEB-INF/jsp/student/studentlisttable.jsp" %>
         </div>
     </div>
-
-    <div id="pageLayer" style="padding-right: 20px;">
-        <nav aria-label="Page navigation" class="text-right">
-            <ul class="pagination" id="pageLayerul"></ul>
-        </nav>
-    </div>
 </div>
 </body>
 </html>
 <script>
     $(function () {
-        var options = {
-            currentPage: ${currentPage},
-            totalPages: ${totalPages},
-            numberOfPages: 5,
-            onPageClicked: function (event, originalEvent, type, page) {
-                loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', page);
-            }
-        }
-        $('#pageLayerul').bootstrapPaginator(options);
-
         //导航栏高亮显示对应模块
         acitveTabById('studentli');
     });
@@ -69,6 +59,15 @@
         var sName = $('#sName').val();
         var sNumber = $('#sNumber').val();
 
+        $('#hidden_sName').val(sName);
+        $('#hidden_sNumber').val(sNumber);
+
+        var data = {
+            'sName': sName,
+            'sNumber': sNumber,
+            'page': 1
+        };
+        loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', data, true);
 
     });
 </script>

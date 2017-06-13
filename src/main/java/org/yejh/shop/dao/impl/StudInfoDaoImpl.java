@@ -29,8 +29,9 @@ public class StudInfoDaoImpl implements StudInfoDao {
     }
 
     @Override
-    public List<StudInfo> findAll(int offset, int length) {
+    public List<StudInfo> findAll(StudInfo studInfo, int offset, int length) {
         Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("studInfo", studInfo);
         paramMap.put("offset", offset);
         paramMap.put("length", length);
         List<StudInfo> studInfoList = mapper.getStudInfo(paramMap);
@@ -54,7 +55,9 @@ public class StudInfoDaoImpl implements StudInfoDao {
     }
 
     @Override
-    public Integer totalCounts() {
-        return mapper.totalCounts();
+    public Integer totalCounts(StudInfo studInfo) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("studInfo", studInfo);
+        return mapper.totalCounts(paramMap);
     }
 }

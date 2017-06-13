@@ -10,6 +10,7 @@ import org.yejh.shop.entity.StudInfo;
 import org.yejh.shop.service.StudInfoService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/5/29.
@@ -33,9 +34,9 @@ public class StudInfoServiceImpl implements StudInfoService {
     }
 
     @Override
-    public List<StudInfo> findAll(int pageOffset, int pageLength) {
+    public List<StudInfo> findAll(StudInfo studInfo, int pageOffset, int pageLength) {
         try {
-            return studInfoDao.findAll(pageOffset, pageLength);
+            return studInfoDao.findAll(studInfo, pageOffset, pageLength);
         } catch (Exception e) {
             LOG.error("findAll: ", e);
             throw e;
@@ -53,9 +54,9 @@ public class StudInfoServiceImpl implements StudInfoService {
     }
 
     @Override
-    public Integer totalCounts() {
+    public Integer totalCounts(StudInfo studInfo) {
         try {
-            return studInfoDao.totalCounts();
+            return studInfoDao.totalCounts(studInfo);
         } catch (Exception e) {
             LOG.error("totalCount: ", e);
             throw e;

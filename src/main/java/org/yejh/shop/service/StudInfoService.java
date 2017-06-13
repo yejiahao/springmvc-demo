@@ -3,6 +3,7 @@ package org.yejh.shop.service;
 import org.yejh.shop.entity.StudInfo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/5/29.
@@ -10,9 +11,9 @@ import java.util.List;
 public interface StudInfoService {
     StudInfo getById(Integer sid);
 
-    List<StudInfo> findAll(int pageOffset, int pageLength);
+    List<StudInfo> findAll(StudInfo studInfo, int pageOffset, int pageLength);
 
     Integer save(StudInfo studInfo);
 
-    Integer totalCounts();
+    Integer totalCounts(StudInfo studInfo);
 }

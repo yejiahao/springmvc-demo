@@ -32,3 +32,28 @@
     </c:forEach>
     </tbody>
 </table>
+
+<div id="pageLayer" style="padding-right: 20px;">
+    <nav aria-label="Page navigation" class="text-right">
+        <ul class="pagination" id="pageLayerul"></ul>
+    </nav>
+</div>
+
+<script>
+    $(function () {
+        var options = {
+            currentPage: ${currentPage},
+            totalPages: ${totalPages},
+            numberOfPages: 5,
+            onPageClicked: function (event, originalEvent, type, page) {
+                var data = {
+                    'sName': $('#hidden_sName').val(),
+                    'sNumber': $('#hidden_sNumber').val(),
+                    'page': page
+                };
+                loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', data, true);
+            }
+        }
+        $('#pageLayerul').bootstrapPaginator(options);
+    });
+</script>
