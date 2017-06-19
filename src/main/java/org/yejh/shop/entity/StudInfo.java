@@ -8,6 +8,8 @@ public class StudInfo implements Serializable {
     private String sName;
     private Integer sNumber;
     private Date sRegisterTime;
+    private Date sRegisterTimeBegin;
+    private Date sRegisterTimeEnd;
 
     public StudInfo() {
     }
@@ -50,6 +52,22 @@ public class StudInfo implements Serializable {
         this.sRegisterTime = sRegisterTime;
     }
 
+    public Date getsRegisterTimeBegin() {
+        return sRegisterTimeBegin;
+    }
+
+    public void setsRegisterTimeBegin(Date sRegisterTimeBegin) {
+        this.sRegisterTimeBegin = sRegisterTimeBegin;
+    }
+
+    public Date getsRegisterTimeEnd() {
+        return sRegisterTimeEnd;
+    }
+
+    public void setsRegisterTimeEnd(Date sRegisterTimeEnd) {
+        this.sRegisterTimeEnd = sRegisterTimeEnd;
+    }
+
     @Override
     public String toString() {
         return "StudInfo{" +
@@ -57,6 +75,8 @@ public class StudInfo implements Serializable {
                 ", sName='" + sName + '\'' +
                 ", sNumber=" + sNumber +
                 ", sRegisterTime=" + sRegisterTime +
+                ", sRegisterTimeBegin=" + sRegisterTimeBegin +
+                ", sRegisterTimeEnd=" + sRegisterTimeEnd +
                 '}';
     }
 }

@@ -49,6 +49,8 @@
                 var data = {
                     'sName': $('#hidden_sName').val(),
                     'sNumber': $('#hidden_sNumber').val(),
+                    'sRegisterTimeBegin': $('#hidden_sRegisterTimeBegin').val(),
+                    'sRegisterTimeEnd': $('#hidden_sRegisterTimeEnd').val(),
                     'page': page
                 };
                 loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', data, true);

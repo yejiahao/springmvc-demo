@@ -16,9 +16,12 @@
             <input type="text" class="form-control" id="sNumber" name="sNumber"/>
         </div>
         <div class="input-group input-group-sm" style="margin-bottom: 10px">
-            <span class="input-group-addon">注册时间</span>
-            <input type="text" class="form-control" id="sRegisterTime" name="sRegisterTime"/>
+            <span class="input-group-addon">注册日期</span>
+            <input type="text" class="form-control datetimepicker" id="sRegisterTimeBegin" name="sRegisterTimeBegin"/>
+            <span class="input-group-addon">到</span>
+            <input type="text" class="form-control datetimepicker" id="sRegisterTimeEnd" name="sRegisterTimeEnd"/>
         </div>
+
         <div class="input-group input-group-sm" style="margin-bottom: 10px">
             <span class="input-group-addon">下拉选择</span>
             <select class="form-control">
@@ -35,7 +38,8 @@
     <div>
         <input type="hidden" id="hidden_sName"/>
         <input type="hidden" id="hidden_sNumber"/>
-        <input type="hidden" id="hidden_sRegisterTime"/>
+        <input type="hidden" id="hidden_sRegisterTimeBegin"/>
+        <input type="hidden" id="hidden_sRegisterTimeEnd"/>
     </div>
 
     <div class="panel panel-default">
@@ -58,13 +62,19 @@
     $('#search').on('click', function () {
         var sName = $('#sName').val();
         var sNumber = $('#sNumber').val();
+        var sRegisterTimeBegin = $('#sRegisterTimeBegin').val();
+        var sRegisterTimeEnd = $('#sRegisterTimeEnd').val();
 
         $('#hidden_sName').val(sName);
         $('#hidden_sNumber').val(sNumber);
+        $('#hidden_sRegisterTimeBegin').val(sRegisterTimeBegin);
+        $('#hidden_sRegisterTimeEnd').val(sRegisterTimeEnd);
 
         var data = {
             'sName': sName,
             'sNumber': sNumber,
+            'sRegisterTimeBegin': sRegisterTimeBegin,
+            'sRegisterTimeEnd': sRegisterTimeEnd,
             'page': 1
         };
         loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', data, true);

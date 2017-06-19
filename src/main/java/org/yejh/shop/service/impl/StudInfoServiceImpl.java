@@ -10,7 +10,6 @@ import org.yejh.shop.entity.StudInfo;
 import org.yejh.shop.service.StudInfoService;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/5/29.

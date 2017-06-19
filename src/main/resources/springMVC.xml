@@ -14,6 +14,17 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 
     <context:component-scan base-package="org.yejh.shop.controller"/>
 
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="org.yejh.shop.utils.DateFormatter">
+                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
     <!-- @response使用 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
@@ -28,11 +39,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
-    <mvc:resources mapping="/image/**" location="/image/"/>
-    <mvc:resources mapping="/js/**" location="/js/"/>
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp"/>
@@ -44,6 +50,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
         <property name="maxUploadSize" value="32505856"/>
         <property name="maxInMemorySize" value="4096"/>
     </bean>
+
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
+    <mvc:resources mapping="/image/**" location="/image/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
 
     <mvc:interceptors>
         <mvc:interceptor>

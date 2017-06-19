@@ -45,6 +45,9 @@
         <if test="studInfo.sNumber != null and studInfo.sNumber != ''">
             AND sNumber LIKE CONCAT('%', #{studInfo.sNumber}, '%')
         </if>
+        <if test="studInfo.sRegisterTimeBegin != null and studInfo.sRegisterTimeEnd != null">
+            AND sregister_time BETWEEN #{studInfo.sRegisterTimeBegin} AND DATE_ADD(#{studInfo.sRegisterTimeEnd},
+            interval 1 day)
+        </if>
     </sql>
-
 </mapper>

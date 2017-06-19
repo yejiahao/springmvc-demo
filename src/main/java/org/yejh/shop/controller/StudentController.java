@@ -11,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.yejh.shop.entity.StudInfo;
 import org.yejh.shop.service.StudInfoService;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/stud")
