@@ -22,17 +22,17 @@ public class StudentController extends BaseController {
     @Qualifier(value = "studInfoService")
     private StudInfoService studInfoService;
 
-    @RequestMapping(value = "/showStudInfos", method = {RequestMethod.GET})
+    @RequestMapping(value = "/showStudInfos", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView showStudInfos(StudInfo studInfo, Integer page) {
-        LOG.info("studInfo: {}, page: {}", studInfo, page);
-        ModelAndView mv = new ModelAndView();
-        String viewName = "/student/studentlisttable";
+        ModelAndView mv = new ModelAndView("/student/studentlisttable");
 
         // first-in
         if (page == null) {
-            page = 1;
-            viewName = "/student/studentlist";
+            mv.setViewName("/student/studentlist");
+            return mv;
         }
+
+        LOG.info("studInfo: {}, page: {}", studInfo, page);
 
         Integer totalCounts = studInfoService.totalCounts(studInfo);
         Integer totalPages = totalCounts % pageLength == 0 ? totalCounts / pageLength : totalCounts / pageLength + 1;
@@ -46,7 +46,6 @@ public class StudentController extends BaseController {
         mv.addObject("currentPage", page);
         mv.addObject("totalPages", totalPages);
         mv.addObject("studentList", studentList);
-        mv.setViewName(viewName);
         return mv;
     }
 }

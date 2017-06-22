@@ -45,9 +45,7 @@
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">学生信息</div>
-        <div id="studentLayer">
-            <%@include file="/WEB-INF/jsp/student/studentlisttable.jsp" %>
-        </div>
+        <div id="studentLayer"></div>
     </div>
 </div>
 </body>
@@ -56,6 +54,12 @@
     $(function () {
         //导航栏高亮显示对应模块
         acitveTabById('studentli');
+
+        $('#studentLayer').load('${pageContext.request.contextPath}/stud/showStudInfos', {'page': 1}, function (responseText, status, xhr) {
+            if (status == "error") {
+                alert("Error: " + xhr.status + ": " + xhr.statusText);
+            }
+        });
     });
 
     // Ajax to find students
@@ -77,7 +81,12 @@
             'sRegisterTimeEnd': sRegisterTimeEnd,
             'page': 1
         };
-        loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', data, true);
+
+        $('#studentLayer').load('${pageContext.request.contextPath}/stud/showStudInfos', data, function (responseText, status, xhr) {
+            if (status == "error") {
+                alert("Error: " + xhr.status + ": " + xhr.statusText);
+            }
+        });
 
     });
 </script>

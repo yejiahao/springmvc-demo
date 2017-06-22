@@ -9,7 +9,7 @@
 <%@ include file="/header.jspf" %>
 <%@ include file="/footer.jspf" %>
 <script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-<body>
+<body style="overflow-y:hidden">
 <div style="position:absolute;">
     <img src="${pageContext.request.contextPath}/image/index.png" style="width: 100%">
 </div>
@@ -31,7 +31,6 @@
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-        <%--<button class="btn btn-lg btn-block" type="reset">重置</button>--%>
         <span style="color:red">${errorMessage}</span>
     </form>
 

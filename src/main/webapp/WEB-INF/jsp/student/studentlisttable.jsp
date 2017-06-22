@@ -7,6 +7,7 @@
     <td>姓名</td>
     <td>学号</td>
     <td>注册时间</td>
+    <td>操作</td>
     </thead>
     <tbody>
     <c:forEach var="student" items="${studentList}" varStatus="status">
@@ -28,6 +29,10 @@
         <td>${student.sName}</td>
         <td>${student.sNumber}</td>
         <td><fmt:formatDate value="${student.sRegisterTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+        <td>
+            <a onclick="alert('pencil')"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a onclick="alert('trash')"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
         </tr>
     </c:forEach>
     </tbody>
@@ -53,7 +58,11 @@
                     'sRegisterTimeEnd': $('#hidden_sRegisterTimeEnd').val(),
                     'page': page
                 };
-                loadPage('studentLayer', '${pageContext.request.contextPath}/stud/showStudInfos', data, true);
+                $('#studentLayer').load('${pageContext.request.contextPath}/stud/showStudInfos', data, function (responseText, status, xhr) {
+                    if (status == "error") {
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                    }
+                });
             }
         }
         $('#pageLayerul').bootstrapPaginator(options);
