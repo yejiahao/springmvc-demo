@@ -30,7 +30,7 @@
         <td>${student.sNumber}</td>
         <td><fmt:formatDate value="${student.sRegisterTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
-            <a onclick="alert('pencil')"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="javascript:initModal();"><span class="glyphicon glyphicon-pencil"></span></a>
             <a onclick="alert('trash')"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
         </tr>
@@ -44,7 +44,120 @@
     </nav>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改信息</h4>
+            </div>
+            <div class="modal-body" style="padding: 40px">
+                <div class="input-group input-group-lg modal-input">
+                    <span class="input-group-addon">省份</span>
+                    <select class="form-control" id="provinceSel">
+                        <option value='0'>请选择</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-lg modal-input">
+                    <span class="input-group-addon">城市</span>
+                    <select class="form-control" id="citySel">
+                        <option value='0'>请选择</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-lg modal-input">
+                    <span class="input-group-addon">地区</span>
+                    <select class="form-control" id="areaSel">
+                        <option value='0'>请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-lg btn-primary">保存信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    $(function () {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/location/getProvinces',
+            method: 'GET',
+            contentType: 'application/json;charset=UTF-8',
+            data: null,
+            success: function (data) {
+                initSel('#provinceSel', data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                window.location.href = '${pageContext.request.contextPath}/login.jsp';
+            },
+            dataType: 'json'
+        });
+    });
+
+    $('#provinceSel').change(function () {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/location/getCitiesByProvince',
+            method: 'GET',
+            contentType: 'application/json;charset=UTF-8',
+            data: {
+                'provincePostCode': $('#provinceSel').val(),
+                'provinceName': $('#provinceSel').find('option:selected').text()
+            },
+            success: function (data) {
+                clearSel('#citySel');
+                clearSel('#areaSel');
+                initSel('#citySel', data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                window.location.href = '${pageContext.request.contextPath}/login.jsp';
+            },
+            dataType: 'json'
+        });
+    });
+
+    $('#citySel').change(function () {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/location/getAreasByCity',
+            method: 'GET',
+            contentType: 'application/json;charset=UTF-8',
+            data: {
+                'provincePostCode': $('#provinceSel').val(),
+                'provinceName': $('#provinceSel').find('option:selected').text(),
+                'cityPostCode': $('#citySel').val(),
+                'cityName': $('#citySel').find('option:selected').text()
+            },
+            success: function (data) {
+                clearSel('#areaSel');
+                initSel('#areaSel', data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                window.location.href = '${pageContext.request.contextPath}/login.jsp';
+            },
+            dataType: 'json'
+        });
+    });
+
+    function clearSel(selId) {
+        $(selId).empty();
+        $(selId).append("<option value='0'>请选择</option>");
+    }
+
+    function initSel(selId, data) {
+        for (var index = 0; index < data.length; index++) {
+            var obj = data[index];
+            $(selId).append("<option value='" + obj.postcode + "'>" + obj.name + "</option>")
+        }
+    }
+
+    function initModal() {
+        $('#infoModal').modal();
+    }
+
     $(function () {
         var options = {
             currentPage: ${currentPage},

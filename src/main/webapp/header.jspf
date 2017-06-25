@@ -13,4 +13,10 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <script src="${pageContext.request.contextPath}/js/common/common.js"></script>
     <title>系统网站</title>
+
+    <style>
+        .modal-input {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>

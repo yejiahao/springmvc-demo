@@ -7,22 +7,22 @@
 <%@ include file="/navbar.jsp" %>
 <div style="margin-top: 60px;">
     <div style="padding: 10px 1200px 10px 20px;">
-        <div class="input-group input-group-sm" style="margin-bottom: 10px;">
+        <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">姓名</span>
             <input type="text" class="form-control" id="sName" name="sName"/>
         </div>
-        <div class="input-group input-group-sm" style="margin-bottom: 10px">
+        <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">学号</span>
             <input type="text" class="form-control" id="sNumber" name="sNumber"/>
         </div>
-        <div class="input-group input-group-sm" style="margin-bottom: 10px">
+        <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">注册日期</span>
             <input type="text" class="form-control datetimepicker" id="sRegisterTimeBegin" name="sRegisterTimeBegin"/>
             <span class="input-group-addon">到</span>
             <input type="text" class="form-control datetimepicker" id="sRegisterTimeEnd" name="sRegisterTimeEnd"/>
         </div>
 
-        <div class="input-group input-group-sm" style="margin-bottom: 10px">
+        <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">下拉选择</span>
             <select class="form-control">
                 <option>1</option>
@@ -55,11 +55,7 @@
         //导航栏高亮显示对应模块
         acitveTabById('studentli');
 
-        $('#studentLayer').load('${pageContext.request.contextPath}/stud/showStudInfos', {'page': 1}, function (responseText, status, xhr) {
-            if (status == "error") {
-                alert("Error: " + xhr.status + ": " + xhr.statusText);
-            }
-        });
+        $('#search').click();
     });
 
     // Ajax to find students

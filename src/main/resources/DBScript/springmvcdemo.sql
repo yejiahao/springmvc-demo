@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50156
 File Encoding         : 65001
 
-Date: 2017-06-04 17:42:49
+Date: 2017-06-25 19:27:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,6 +46,14 @@ CREATE TABLE `stud_info` (
   `sname` varchar(255) DEFAULT NULL,
   `snumber` int(11) DEFAULT NULL,
   `sregister_time` datetime DEFAULT NULL,
+  `province_postcode` varchar(32) DEFAULT NULL,
+  `province_name` varchar(64) DEFAULT NULL,
+  `city_postcode` varchar(32) DEFAULT NULL,
+  `city_name` varchar(64) DEFAULT NULL,
+  `area_postcode` varchar(32) DEFAULT NULL,
+  `area_name` varchar(64) DEFAULT NULL,
+  `create_time` datetime NOT NULL,
+  `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`sid`),
   KEY `id_sname_snumber` (`sid`,`sname`,`snumber`),
   KEY `id_sname` (`sid`,`sname`)
