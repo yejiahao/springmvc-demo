@@ -5,9 +5,9 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 public interface RMIServerService extends Remote {
-	String echo(String msg) throws RemoteException;
+    String echo(String msg) throws RemoteException;
 
-	String echo(String yourNo, byte[] yourName) throws RemoteException;
+    String echo(String yourNo, byte[] yourName) throws RemoteException;
 
-	Date getTime() throws RemoteException;
+    Date getTime() throws RemoteException;
 }
