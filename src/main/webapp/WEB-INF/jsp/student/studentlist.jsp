@@ -13,7 +13,8 @@
         </div>
         <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">学号</span>
-            <input type="text" class="form-control" id="sNumber" name="sNumber"/>
+            <input type="text" class="form-control" id="sNumber" name="sNumber"
+                   onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="9"/>
         </div>
         <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">注册日期</span>
