@@ -35,6 +35,25 @@
         </where>
     </select>
 
+    <update id="updateLocation" parameterType="java.util.HashMap">
+        UPDATE stud_info
+        SET
+        province_postcode = #{location.provincePostCode}, province_name = #{location.provinceName},
+        city_postcode = #{location.cityPostCode}, city_name = #{location.cityName},
+        area_postcode = #{location.areaPostCode}, area_name = #{location.areaName},
+        update_time = NOW()
+        <where>
+            <choose>
+                <when test="sId != null and sId != ''">
+                    AND sid = #{sId}
+                </when>
+                <otherwise>
+                    AND sid IS NULL
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+
     <sql id="where_studInfo">
         <if test="studInfo.sId != null and studInfo.sId != ''">
             AND sid = #{studInfo.sId}
@@ -47,7 +66,7 @@
         </if>
         <if test="studInfo.sRegisterTimeBegin != null and studInfo.sRegisterTimeEnd != null">
             AND sregister_time BETWEEN #{studInfo.sRegisterTimeBegin} AND DATE_ADD(#{studInfo.sRegisterTimeEnd},
-            interval 1 day)
+            INTERVAL 1 DAY)
         </if>
     </sql>
 </mapper>

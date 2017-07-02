@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.yejh.shop.dao.StudInfoDao;
 import org.yejh.shop.dao.mapping.StudInfoMapper;
+import org.yejh.shop.entity.Location;
 import org.yejh.shop.entity.StudInfo;
 
 import java.util.HashMap;
@@ -59,5 +60,13 @@ public class StudInfoDaoImpl implements StudInfoDao {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("studInfo", studInfo);
         return mapper.totalCounts(paramMap);
+    }
+
+    @Override
+    public Integer updateLocation(Integer sId, Location location) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("sId", sId);
+        paramMap.put("location", location);
+        return mapper.updateLocation(paramMap);
     }
 }

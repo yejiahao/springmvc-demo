@@ -3653,9 +3653,64 @@
         </city>
     </province>
     <province name="台湾省" postcode="710000">
+        <city name="台湾省" postcode="710100">
+            <area name="台北市" postcode="710101"/>
+            <area name="新北市" postcode="710102"/>
+            <area name="桃园市" postcode="710103"/>
+            <area name="台中市" postcode="710104"/>
+            <area name="台南市" postcode="710105"/>
+            <area name="高雄市" postcode="710106"/>
+            <area name="基隆市" postcode="710107"/>
+            <area name="新竹市" postcode="710108"/>
+            <area name="嘉义市" postcode="710109"/>
+            <area name="宜兰县" postcode="710110"/>
+            <area name="新竹县" postcode="710111"/>
+            <area name="苗栗县" postcode="710112"/>
+            <area name="彰化县" postcode="710113"/>
+            <area name="南投县" postcode="710114"/>
+            <area name="嘉义县" postcode="710115"/>
+            <area name="云林县" postcode="710116"/>
+            <area name="屏东县" postcode="710117"/>
+            <area name="台东县" postcode="710118"/>
+            <area name="花莲县" postcode="710119"/>
+            <area name="澎湖县" postcode="710120"/>
+            <area name="金门县" postcode="710121"/>
+            <area name="连江县" postcode="710122"/>
+        </city>
     </province>
     <province name="香港特别行政区" postcode="810000">
+        <city name="香港特别行政区" postcode="810100">
+            <area name="中西区" postcode="810101"/>
+            <area name="湾仔区" postcode="810102"/>
+            <area name="东区" postcode="810103"/>
+            <area name="南区" postcode="810104"/>
+            <area name="油尖旺区" postcode="810105"/>
+            <area name="深水埗区" postcode="810106"/>
+            <area name="九龙城区" postcode="810107"/>
+            <area name="黄大仙区" postcode="810108"/>
+            <area name="观塘区" postcode="810109"/>
+            <area name="北区" postcode="810110"/>
+            <area name="大埔区" postcode="810111"/>
+            <area name="沙田区" postcode="810112"/>
+            <area name="西贡区" postcode="810113"/>
+            <area name="荃湾区" postcode="810114"/>
+            <area name="屯门区" postcode="810115"/>
+            <area name="元朗区" postcode="810116"/>
+            <area name="葵青区" postcode="810117"/>
+            <area name="离岛区" postcode="810118"/>
+        </city>
     </province>
     <province name="澳门特别行政区" postcode="820000">
+        <city name="澳门特别行政区" postcode="820100">
+            <area name="花地玛堂区" postcode="820101"/>
+            <area name="圣安多尼堂区" postcode="820102"/>
+            <area name="大堂区" postcode="820103"/>
+            <area name="望德堂区" postcode="820104"/>
+            <area name="风顺堂区" postcode="820105"/>
+            <area name="嘉模堂区" postcode="820106"/>
+            <area name="圣方济各堂区" postcode="820107"/>
+            <area name="路氹城" postcode="820108"/>
+            <area name="澳门新城" postcode="820109"/>
+        </city>
     </province>
 </root>

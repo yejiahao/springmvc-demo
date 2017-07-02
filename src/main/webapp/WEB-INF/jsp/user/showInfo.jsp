@@ -59,7 +59,7 @@
             url: '${pageContext.request.contextPath}/user/showInfos',
             data: null,
             dataType: 'json',
-            success: function (data, status) {
+            success: function (data) {
                 $(data).each(function (i, userInfo) {
                     $('#allUser_table tbody').append('<tr><td>' + userInfo.uNumber + '</td><td>' + userInfo.uName +
                         '</td><td>' + userInfo.uRegisterTime + '</td></tr>');

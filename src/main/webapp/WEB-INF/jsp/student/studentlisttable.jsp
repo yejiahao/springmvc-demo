@@ -30,7 +30,9 @@
         <td>${student.sNumber}</td>
         <td><fmt:formatDate value="${student.sRegisterTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
-            <a href="javascript:initModal();"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a data-id="${student.sId}" data-name="${student.sName}" data-number="${student.sNumber}"
+               data-toggle="modal" href="#infoModal"><span
+                    class="glyphicon glyphicon-pencil"></span></a>
             <a onclick="alert('trash')"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
         </tr>
@@ -49,10 +51,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <button class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">修改信息</h4>
             </div>
             <div class="modal-body" style="padding: 40px">
+                <input type="hidden" value=""/>
+                <label></label>
                 <div class="input-group input-group-lg modal-input">
                     <span class="input-group-addon">省份</span>
                     <select class="form-control" id="provinceSel">
@@ -73,13 +77,63 @@
                 </div>
             </div>
             <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-lg btn-primary">保存信息</button>
+                <button type="button" class="btn btn-lg btn-primary" id="saveInfo">保存信息</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    $('#infoModal').on('show.bs.modal', function (event) {
+        var target = $(event.relatedTarget);
+        var sId = target.data('id');
+        var sName = target.data('name');
+        var sNumber = target.data('number');
+        $(this).find('.modal-body input[type="hidden"]').val(sId);
+        $(this).find('.modal-body label').text(sName + ' ' + sNumber);
+    });
+
+    $('#saveInfo').on('click', function () {
+        var sId = $('.modal-body input[type="hidden"]').val();
+        var provincePostCode = $('#provinceSel').val();
+        var provinceName = $('#provinceSel').find('option:selected').text();
+        var cityPostCode = $('#citySel').val();
+        var cityName = $('#citySel').find('option:selected').text();
+        var areaPostCode = $('#areaSel').val();
+        var areaName = $('#areaSel').find('option:selected').text();
+        if (provincePostCode == '0' || cityPostCode == '0' || areaPostCode == '0') {
+            alert("请选择省份/城市/地区");
+            return false;
+        }
+        $.ajax({
+            url: '${pageContext.request.contextPath}/stud/updateLocation',
+            method: 'POST',
+            data: {
+                'sId': sId,
+                'provincePostCode': provincePostCode,
+                'provinceName': provinceName,
+                'cityPostCode': cityPostCode,
+                'cityName': cityName,
+                'areaPostCode': areaPostCode,
+                'areaName': areaName
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data) {
+                    $('.close').click();
+                } else {
+                    alert("保存信息失败");
+                    return false;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("保存信息失败： " + errorThrown);
+                return false;
+            }
+        });
+
+    });
+
     $(function () {
         $.ajax({
             url: '${pageContext.request.contextPath}/location/getProvinces',
@@ -152,10 +206,6 @@
             var obj = data[index];
             $(selId).append("<option value='" + obj.postcode + "'>" + obj.name + "</option>")
         }
-    }
-
-    function initModal() {
-        $('#infoModal').modal();
     }
 
     $(function () {

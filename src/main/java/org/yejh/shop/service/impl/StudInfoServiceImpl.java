@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.yejh.shop.dao.StudInfoDao;
+import org.yejh.shop.entity.Location;
 import org.yejh.shop.entity.StudInfo;
 import org.yejh.shop.service.StudInfoService;
 
@@ -58,6 +59,16 @@ public class StudInfoServiceImpl implements StudInfoService {
             return studInfoDao.totalCounts(studInfo);
         } catch (Exception e) {
             LOG.error("totalCount: ", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public Integer updateLocation(Integer sId, Location location) {
+        try {
+            return studInfoDao.updateLocation(sId, location);
+        } catch (Exception e) {
+            LOG.error("updateLocation: ", e);
             throw e;
         }
     }

@@ -1,13 +1,14 @@
 package org.yejh.demo.portscan;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
 public class PortScanner extends Thread {
-    private static final Logger logger = Logger.getLogger(PortScanner.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PortScanner.class);
 
     private String host;
     private int sPort;
@@ -58,15 +59,15 @@ public class PortScanner extends Thread {
                 } else {
                     socket = new Socket(host, port);
                 }
-                logger.info("open port: " + port + " " + socket);
+                LOG.info("open port: {} {}", port, socket);
             } catch (Exception e) {
-                logger.error("cannot connect to port: " + port);
+                LOG.error("cannot connect to port: {}", port);
             } finally {
                 if (socket != null) {
                     try {
                         socket.close();
                     } catch (Exception e) {
-                        logger.error("socket close exception: ", e);
+                        LOG.error("socket close exception: ", e);
                     }
                 }
             }
@@ -75,7 +76,7 @@ public class PortScanner extends Thread {
 
     public static void main(String[] args) {
         notThreadPort();
-        logger.info("-----------------------------------------------------------------------");
+        LOG.info("-----------------------------------------------------------------------");
         threadPort();
     }
 
@@ -87,7 +88,7 @@ public class PortScanner extends Thread {
         long sTime = System.currentTimeMillis();
         portScanner.scan(host, sPort, ePort, Boolean.TRUE);
         long eTime = System.currentTimeMillis();
-        logger.info("execute time: " + (eTime - sTime) + " ms");
+        LOG.info("execute time: {} ms", (eTime - sTime));
     }
 
     private static void threadPort() {

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.yejh.shop.entity.Location;
 import org.yejh.shop.entity.StudInfo;
 import org.yejh.shop.service.StudInfoService;
 
@@ -47,5 +49,21 @@ public class StudentController extends BaseController {
         mv.addObject("totalPages", totalPages);
         mv.addObject("studentList", studentList);
         return mv;
+    }
+
+    @RequestMapping(value = "/updateLocation", method = {RequestMethod.POST})
+    @ResponseBody
+    public Boolean updateLocation(StudInfo studInfo, Location location) {
+        Boolean isUpdate = Boolean.FALSE;
+        try {
+            Integer result = studInfoService.updateLocation(studInfo.getsId(), location);
+            if (result > 0) {
+                isUpdate = Boolean.TRUE;
+            }
+        } catch (Exception e) {
+            LOG.error("updateLocation", e);
+        } finally {
+            return isUpdate;
+        }
     }
 }
