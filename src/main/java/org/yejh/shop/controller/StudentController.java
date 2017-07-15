@@ -66,4 +66,13 @@ public class StudentController extends BaseController {
             return isUpdate;
         }
     }
+
+    @RequestMapping(value = "/getLocation", method = {RequestMethod.GET})
+    @ResponseBody
+    public Object getLocation(StudInfo studInfo) {
+        LOG.info("sId: {}", studInfo.getsId());
+        Location location = studInfoService.getStudInfoLocation(studInfo);
+        LOG.info("location: {}", location);
+        return location;
+    }
 }

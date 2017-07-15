@@ -91,6 +91,28 @@
         var sNumber = target.data('number');
         $(this).find('.modal-body input[type="hidden"]').val(sId);
         $(this).find('.modal-body label').text(sName + ' ' + sNumber);
+        $.ajax({
+            url: '${pageContext.request.contextPath}/stud/getLocation',
+            method: 'GET',
+            data: {
+                'sId': sId
+            },
+            dataType: 'json',
+            success: function (data) {
+                /*
+                 // TODO
+                 $('#provinceSel').val(data.provincePostCode);
+                 $('#provinceSel').find('option:selected').text(data.provinceName);
+                 $('#citySel').val(data.cityPostCode);
+                 $('#citySel').find('option:selected').text(data.cityName);
+                 $('#areaSel').val(data.areaPostCode);
+                 $('#areaSel').find('option:selected').text(data.areaName);*/
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("加载信息失败： " + errorThrown);
+                return false;
+            }
+        });
     });
 
     $('#saveInfo').on('click', function () {

@@ -11,6 +11,8 @@ import java.util.List;
 public interface StudInfoService {
     StudInfo getById(Integer sid);
 
+    Location getStudInfoLocation(StudInfo studInfo);
+
     List<StudInfo> findAll(StudInfo studInfo, int pageOffset, int pageLength);
 
     Integer save(StudInfo studInfo);

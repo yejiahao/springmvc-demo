@@ -6,7 +6,7 @@
 <body>
 <%@ include file="/navbar.jsp" %>
 <div style="margin-top: 60px;">
-    <div style="padding: 10px 1200px 10px 20px;">
+    <div style="padding: 10px 75% 10px 1%;">
         <div class="input-group input-group-sm modal-input">
             <span class="input-group-addon">姓名</span>
             <input type="text" class="form-control" id="sName" name="sName"/>

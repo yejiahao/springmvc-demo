@@ -30,6 +30,17 @@ public class StudInfoDaoImpl implements StudInfoDao {
     }
 
     @Override
+    public Location getStudInfoLocation(StudInfo studInfo) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("studInfo", studInfo);
+        Location location = mapper.getStudInfoLocation(paramMap).get(0);
+        if (location == null) {
+            location = new Location();
+        }
+        return location;
+    }
+
+    @Override
     public List<StudInfo> findAll(StudInfo studInfo, int offset, int length) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("studInfo", studInfo);

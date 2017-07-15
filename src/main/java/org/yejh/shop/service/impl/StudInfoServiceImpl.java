@@ -34,6 +34,16 @@ public class StudInfoServiceImpl implements StudInfoService {
     }
 
     @Override
+    public Location getStudInfoLocation(StudInfo studInfo) {
+        try {
+            return studInfoDao.getStudInfoLocation(studInfo);
+        } catch (Exception e) {
+            LOG.error("getStudInfoLocation: ", e);
+            throw e;
+        }
+    }
+
+    @Override
     public List<StudInfo> findAll(StudInfo studInfo, int pageOffset, int pageLength) {
         try {
             return studInfoDao.findAll(studInfo, pageOffset, pageLength);

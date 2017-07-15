@@ -7,6 +7,15 @@
         <result column="snumber" property="sNumber" jdbcType="INTEGER"/>
         <result column="sregister_time" property="sRegisterTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+    <resultMap id="studInfoLocationRM" type="org.yejh.shop.entity.Location">
+        <result column="province_postcode" property="provincePostCode" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_postcode" property="cityPostCode" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="area_postcode" property="areaPostCode" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <select id="getStudInfo" parameterType="java.util.HashMap" resultMap="studInfoRM">
         SELECT *
         FROM
@@ -16,6 +25,15 @@
         </where>
         ORDER BY sid
         LIMIT #{offset}, #{length}
+    </select>
+
+    <select id="getStudInfoLocation" parameterType="java.util.HashMap" resultMap="studInfoLocationRM">
+        SELECT province_postcode, province_name, city_postcode, city_name, area_postcode, area_name
+        FROM
+        stud_info
+        <where>
+            <include refid="where_studInfo"/>
+        </where>
     </select>
 
     <insert id="save" parameterType="org.yejh.shop.entity.StudInfo">
