@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ include file="/header.jspf" %>
 <%@ include file="/footer.jspf" %>
-<%
-    DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    request.setAttribute("now", dt.format(new Date()));%>
+
 <body>
 <%@ include file="/navbar.jsp" %>
 <div style="margin-top: 80px">

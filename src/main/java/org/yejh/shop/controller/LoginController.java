@@ -18,6 +18,9 @@ import org.yejh.shop.service.LoginService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -40,7 +43,9 @@ public class LoginController extends BaseController {
             int code = Integer.parseInt(String.valueOf(resultMap.get("code")));
             if (code == Constants.SUCCESS_CODE) {
                 User user = (User) resultMap.get("user");
+                DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 session.setAttribute("loginUser", user);
+                session.setAttribute("now", dt.format(new Date()));
             } else {
                 String errorMessage = String.valueOf(resultMap.get("message"));
                 session.setAttribute("errorMessage", errorMessage);

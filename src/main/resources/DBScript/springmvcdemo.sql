@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : Local
-Source Server Version : 50156
+Source Server Version : 50719
 Source Host           : localhost:3306
 Source Database       : springmvcdemo
 
 Target Server Type    : MYSQL
-Target Server Version : 50156
+Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-06-25 19:27:59
+Date: 2017-08-12 01:44:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,7 +57,7 @@ CREATE TABLE `stud_info` (
   PRIMARY KEY (`sid`),
   KEY `id_sname_snumber` (`sid`,`sname`,`snumber`),
   KEY `id_sname` (`sid`,`sname`)
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for user
@@ -74,4 +74,4 @@ CREATE TABLE `user` (
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `account` (`account`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

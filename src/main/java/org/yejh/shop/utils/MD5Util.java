@@ -1,6 +1,5 @@
 package org.yejh.shop.utils;
 
-import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /**
@@ -14,7 +13,13 @@ public class MD5Util {
     public static String encode(String inputStr) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(inputStr.getBytes());
-        String outputStr = new BigInteger(1, md.digest()).toString(16);
-        return outputStr;
+        byte[] digest = md.digest();
+        final String HEX = "0123456789abcdef";
+        StringBuilder sb = new StringBuilder(digest.length * 2);
+        for (byte b : digest) {
+            sb.append(HEX.charAt((b >> 4) & 0x0f));
+            sb.append(HEX.charAt(b & 0x0f));
+        }
+        return sb.toString();
     }
 }

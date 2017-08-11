@@ -99,14 +99,11 @@
             },
             dataType: 'json',
             success: function (data) {
-                /*
-                 // TODO
-                 $('#provinceSel').val(data.provincePostCode);
-                 $('#provinceSel').find('option:selected').text(data.provinceName);
-                 $('#citySel').val(data.cityPostCode);
-                 $('#citySel').find('option:selected').text(data.cityName);
-                 $('#areaSel').val(data.areaPostCode);
-                 $('#areaSel').find('option:selected').text(data.areaName);*/
+                $('#provinceSel').val(data.provincePostCode || 0);
+                $('#provinceSel').change();
+                $('#citySel').val(data.cityPostCode || 0);
+                $('#citySel').change();
+                $('#areaSel').val(data.areaPostCode || 0);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("加载信息失败： " + errorThrown);
@@ -177,6 +174,7 @@
         $.ajax({
             url: '${pageContext.request.contextPath}/location/getCitiesByProvince',
             method: 'GET',
+            async: false,
             contentType: 'application/json;charset=UTF-8',
             data: {
                 'provincePostCode': $('#provinceSel').val(),
@@ -199,6 +197,7 @@
         $.ajax({
             url: '${pageContext.request.contextPath}/location/getAreasByCity',
             method: 'GET',
+            async: false,
             contentType: 'application/json;charset=UTF-8',
             data: {
                 'provincePostCode': $('#provinceSel').val(),

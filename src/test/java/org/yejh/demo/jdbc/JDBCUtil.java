@@ -57,8 +57,8 @@ public class JDBCUtil {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/springmvcdemo";
         String user = "root";
-        String password = "";
-        String sql = "SELECT * FROM user_info";
+        String password = "20170419";
+        String sql = "SELECT * FROM user";
         Connection conn = JDBCUtil.getConnection(url, user, password);
         JDBCUtil.getResultSet(conn, sql);
         System.out.println("test end.");
