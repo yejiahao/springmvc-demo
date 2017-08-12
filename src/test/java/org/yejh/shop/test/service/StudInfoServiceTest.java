@@ -1,8 +1,6 @@
 package org.yejh.shop.test.service;
 
-import java.util.Date;
-import java.util.List;
-
+import com.alibaba.fastjson.JSON;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.yejh.shop.entity.StudInfo;
 import org.yejh.shop.service.StudInfoService;
 
-import com.alibaba.fastjson.JSON;
+import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:/applicationContext.xml", "classpath*:/mybatis/StudInfoMapper.xml"})
@@ -56,7 +55,7 @@ public class StudInfoServiceTest {
 
     @Test
     public void testSave() {
-        StudInfo student = new StudInfo("Java", 8080, new Date());
+        StudInfo student = new StudInfo("Tomcat", 8080, new Date(), 25, 1, 4, "科学");
         Integer count = studInfoService.save(student);
         LOG.info("count= {}", count);
     }

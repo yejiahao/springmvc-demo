@@ -7,6 +7,7 @@
     <td>姓名</td>
     <td>学号</td>
     <td>注册时间</td>
+    <td>所属专业</td>
     <td>操作</td>
     </thead>
     <tbody>
@@ -29,10 +30,13 @@
         <td>${student.sName}</td>
         <td>${student.sNumber}</td>
         <td><fmt:formatDate value="${student.sRegisterTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+        <td>${student.professional}</td>
         <td>
             <a data-id="${student.sId}" data-name="${student.sName}" data-number="${student.sNumber}"
-               data-toggle="modal" href="#infoModal"><span
-                    class="glyphicon glyphicon-pencil"></span></a>
+               data-toggle="modal" href="#infoModal">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <sapn style="margin:15px"></sapn>
             <a onclick="alert('trash')"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
         </tr>
@@ -51,7 +55,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">修改信息</h4>
             </div>
             <div class="modal-body" style="padding: 40px">
@@ -90,7 +96,7 @@
         var sName = target.data('name');
         var sNumber = target.data('number');
         $(this).find('.modal-body input[type="hidden"]').val(sId);
-        $(this).find('.modal-body label').text(sName + ' ' + sNumber);
+        $(this).find('.modal-body label').text(sName + ' | ' + sNumber);
         $.ajax({
             url: '${pageContext.request.contextPath}/stud/getLocation',
             method: 'GET',
@@ -240,6 +246,7 @@
                     'sNumber': $('#hidden_sNumber').val(),
                     'sRegisterTimeBegin': $('#hidden_sRegisterTimeBegin').val(),
                     'sRegisterTimeEnd': $('#hidden_sRegisterTimeEnd').val(),
+                    'grade': $('#hidden_grade').val(),
                     'page': page
                 };
                 $('#studentLayer').load('${pageContext.request.contextPath}/stud/showStudInfos', data, function (responseText, status, xhr) {

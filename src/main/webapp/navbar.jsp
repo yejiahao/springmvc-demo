@@ -20,6 +20,7 @@
                 <li id="mainli"><a href="${pageContext.request.contextPath}/login/login">首页</a>
                 </li>
                 <li id="studentli"><a href="${pageContext.request.contextPath}/stud/showStudInfos">学生管理</a></li>
+                <li id="achievementli"><a href="#">成绩管理</a></li>
                 <li id="courseli"><a href="#">课程管理</a></li>
             </ul>
             <form class="navbar-form navbar-left">

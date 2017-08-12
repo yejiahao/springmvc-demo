@@ -24,11 +24,13 @@
         </div>
 
         <div class="input-group input-group-sm modal-input">
-            <span class="input-group-addon">下拉选择</span>
-            <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+            <span class="input-group-addon">所属年级</span>
+            <select class="form-control" id="grade" name="grade">
+                <option value="0">全部</option>
+                <option value="1">一年级</option>
+                <option value="2">二年级</option>
+                <option value="3">三年级</option>
+                <option value="4">四年级</option>
             </select>
         </div>
         <div class="input-group input-group-sm">
@@ -41,11 +43,17 @@
         <input type="hidden" id="hidden_sNumber"/>
         <input type="hidden" id="hidden_sRegisterTimeBegin"/>
         <input type="hidden" id="hidden_sRegisterTimeEnd"/>
+        <input type="hidden" id="hidden_grade"/>
     </div>
 
     <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">学生信息</div>
+        <div class="panel-heading">
+            <span style="font-size: 20px;">学生信息</span>
+            <div style="float: right;">
+                <button class="btn btn-info" id="create">添加学生</button>
+                <button class="btn btn-warning" id="export">批量导出</button>
+            </div>
+        </div>
         <div id="studentLayer"></div>
     </div>
 </div>
@@ -65,17 +73,20 @@
         var sNumber = $('#sNumber').val();
         var sRegisterTimeBegin = $('#sRegisterTimeBegin').val();
         var sRegisterTimeEnd = $('#sRegisterTimeEnd').val();
+        var grade = $('#grade').val();
 
         $('#hidden_sName').val(sName);
         $('#hidden_sNumber').val(sNumber);
         $('#hidden_sRegisterTimeBegin').val(sRegisterTimeBegin);
         $('#hidden_sRegisterTimeEnd').val(sRegisterTimeEnd);
+        $('#hidden_grade').val(grade);
 
         var data = {
             'sName': sName,
             'sNumber': sNumber,
             'sRegisterTimeBegin': sRegisterTimeBegin,
             'sRegisterTimeEnd': sRegisterTimeEnd,
+            'grade': grade,
             'page': 1
         };
 

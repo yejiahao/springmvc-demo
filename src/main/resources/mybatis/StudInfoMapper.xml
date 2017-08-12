@@ -86,5 +86,8 @@
             AND sregister_time BETWEEN #{studInfo.sRegisterTimeBegin} AND DATE_ADD(#{studInfo.sRegisterTimeEnd},
             INTERVAL 1 DAY)
         </if>
+        <if test="studInfo.grade != null and studInfo.grade != ''">
+            AND grade = #{studInfo.grade}
+        </if>
     </sql>
 </mapper>

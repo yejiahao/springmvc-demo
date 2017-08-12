@@ -11,13 +11,22 @@ public class StudInfo implements Serializable {
     private Date sRegisterTimeBegin;
     private Date sRegisterTimeEnd;
 
+    private Integer age;
+    private Integer gender;// 0 → female, 1 → male
+    private Integer grade;// 1 → freshman, 2 → sophomoreer, 3 → junior, 4 → senior
+    private String professional;
+
     public StudInfo() {
     }
 
-    public StudInfo(String sName, Integer sNumber, Date sRegisterTime) {
+    public StudInfo(String sName, Integer sNumber, Date sRegisterTime, Integer age, Integer gender, Integer grade, String professional) {
         this.sName = sName;
         this.sNumber = sNumber;
         this.sRegisterTime = sRegisterTime;
+        this.age = age;
+        this.gender = gender;
+        this.grade = grade;
+        this.professional = professional;
     }
 
     public Integer getsId() {
@@ -68,6 +77,38 @@ public class StudInfo implements Serializable {
         this.sRegisterTimeEnd = sRegisterTimeEnd;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+    public String getProfessional() {
+        return professional;
+    }
+
+    public void setProfessional(String professional) {
+        this.professional = professional;
+    }
+
     @Override
     public String toString() {
         return "StudInfo{" +
@@ -77,6 +118,10 @@ public class StudInfo implements Serializable {
                 ", sRegisterTime=" + sRegisterTime +
                 ", sRegisterTimeBegin=" + sRegisterTimeBegin +
                 ", sRegisterTimeEnd=" + sRegisterTimeEnd +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", grade=" + grade +
+                ", professional='" + professional + '\'' +
                 '}';
     }
 }

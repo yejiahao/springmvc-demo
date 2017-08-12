@@ -18,5 +18,9 @@
         .modal-input {
             margin-bottom: 10px;
         }
+
+        td {
+            text-align: center;
+        }
     </style>
 </head>

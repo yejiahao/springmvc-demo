@@ -27,6 +27,7 @@ import java.util.Map;
 @RequestMapping(value = "/login")
 public class LoginController extends BaseController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
+    private static final DateFormat DT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("loginService")
@@ -36,16 +37,18 @@ public class LoginController extends BaseController {
     public ModelAndView login(String account, String password, HttpSession session) {
         ModelAndView mv = new ModelAndView("/main");
         if (session.getAttribute("loginUser") != null) {
-            LOG.info("{} have been logined", session.getAttribute("loginUser"));
+            if (account != null) {
+                session.setAttribute("now", DT.format(new Date()));
+            }
+            LOG.info("{} have been logged in", session.getAttribute("loginUser"));
         } else {
             LOG.info("account: {}\tpassword: {}", account, password);
             Map<String, Object> resultMap = loginService.loginVerify(account, password);
             int code = Integer.parseInt(String.valueOf(resultMap.get("code")));
             if (code == Constants.SUCCESS_CODE) {
                 User user = (User) resultMap.get("user");
-                DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 session.setAttribute("loginUser", user);
-                session.setAttribute("now", dt.format(new Date()));
+                session.setAttribute("now", DT.format(new Date()));
             } else {
                 String errorMessage = String.valueOf(resultMap.get("message"));
                 session.setAttribute("errorMessage", errorMessage);
