@@ -75,4 +75,11 @@ public class StudentController extends BaseController {
         LOG.info("location: {}", location);
         return location;
     }
+
+    @RequestMapping(value = "/delStud", method = {RequestMethod.DELETE})
+    @ResponseBody
+    public Boolean delStud(Integer sId) {
+        LOG.info("sId: {}", sId);
+        return studInfoService.delStud(sId);
+    }
 }

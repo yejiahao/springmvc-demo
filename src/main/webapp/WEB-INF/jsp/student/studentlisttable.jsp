@@ -37,7 +37,10 @@
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
             <sapn style="margin:15px"></sapn>
-            <a onclick="alert('trash')"><span class="glyphicon glyphicon-trash"></span></a>
+            <a data-id="${student.sId}" data-name="${student.sName}" data-number="${student.sNumber}"
+               class="deleteLink">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
         </td>
         </tr>
     </c:forEach>
@@ -56,7 +59,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">修改信息</h4>
             </div>
@@ -158,6 +161,33 @@
         });
 
     });
+
+    $('.deleteLink').on('click', function () {
+        var data = $(this).data();
+        var message = '确定要删除<span class="label label-danger">' + data['name'] + ' | ' + data['number'] + '</span>？';
+        confirm(deteleItem, $(this), message);
+    })
+
+    function deteleItem($ele) {
+        var sId = $ele.data()['id'],
+            errMsg = "删除失败，请联系管理员";
+        $.ajax({
+            url: '${pageContext.request.contextPath}/stud/delStud?sId=' + sId,
+            method: 'DELETE',
+            success: function (isSuccess) {
+                if (isSuccess) {
+                    $ele.parent().parent().remove();
+                } else {
+                    alert(errMsg);
+                    return false;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errMsg + "[" + errorThrown + "]");
+                return false;
+            }
+        });
+    }
 
     $(function () {
         $.ajax({

@@ -82,4 +82,17 @@ public class StudInfoServiceImpl implements StudInfoService {
             throw e;
         }
     }
+
+    @Override
+    public boolean delStud(Integer sId) {
+        boolean isSuccess = true;
+        try {
+            studInfoDao.delete(sId);
+        } catch (Exception e) {
+            LOG.error("delStud: ", e);
+            isSuccess = false;
+        } finally {
+            return isSuccess;
+        }
+    }
 }

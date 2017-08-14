@@ -18,8 +18,6 @@ import org.yejh.shop.service.LoginService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -27,7 +25,6 @@ import java.util.Map;
 @RequestMapping(value = "/login")
 public class LoginController extends BaseController {
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
-    private static final DateFormat DT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     @Qualifier("loginService")
@@ -38,7 +35,7 @@ public class LoginController extends BaseController {
         ModelAndView mv = new ModelAndView("/main");
         if (session.getAttribute("loginUser") != null) {
             if (account != null) {
-                session.setAttribute("now", DT.format(new Date()));
+                session.setAttribute("now", new Date());
             }
             LOG.info("{} have been logged in", session.getAttribute("loginUser"));
         } else {
@@ -48,7 +45,7 @@ public class LoginController extends BaseController {
             if (code == Constants.SUCCESS_CODE) {
                 User user = (User) resultMap.get("user");
                 session.setAttribute("loginUser", user);
-                session.setAttribute("now", DT.format(new Date()));
+                session.setAttribute("now", new Date());
             } else {
                 String errorMessage = String.valueOf(resultMap.get("message"));
                 session.setAttribute("errorMessage", errorMessage);

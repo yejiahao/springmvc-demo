@@ -20,4 +20,6 @@ public interface StudInfoService {
     Integer totalCounts(StudInfo studInfo);
 
     Integer updateLocation(Integer sId, Location location);
+
+    boolean delStud(Integer sId);
 }

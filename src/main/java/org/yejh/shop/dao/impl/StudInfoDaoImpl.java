@@ -63,7 +63,7 @@ public class StudInfoDaoImpl implements StudInfoDao {
 
     @Override
     public void delete(Integer id) {
-
+        mapper.delete(id);
     }
 
     @Override

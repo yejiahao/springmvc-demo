@@ -72,6 +72,21 @@
         </where>
     </update>
 
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE
+        FROM stud_info
+        <where>
+            <choose>
+                <when test="id != null and id != ''">
+                    AND sid = #{id}
+                </when>
+                <otherwise>
+                    AND sid IS NULL
+                </otherwise>
+            </choose>
+        </where>
+    </delete>
+
     <sql id="where_studInfo">
         <if test="studInfo.sId != null and studInfo.sId != ''">
             AND sid = #{studInfo.sId}

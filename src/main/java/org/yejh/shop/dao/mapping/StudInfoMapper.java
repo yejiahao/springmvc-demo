@@ -1,5 +1,6 @@
 package org.yejh.shop.dao.mapping;
 
+import org.apache.ibatis.annotations.Param;
 import org.yejh.shop.entity.Location;
 import org.yejh.shop.entity.StudInfo;
 
@@ -19,4 +20,6 @@ public interface StudInfoMapper {
     Integer totalCounts(Map<String, Object> reqMap);
 
     Integer updateLocation(Map<String, Object> reqMap);
+
+    void delete(@Param("id") Integer id);
 }
