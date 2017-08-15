@@ -14,11 +14,11 @@ function confirm(func, data, message) {
     var html = '<div class="modal fade" id="myConfirm" tabindex="-1" role="dialog" aria-labelledby="myConfirmLabel">'
         + '<div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-header">'
         + '<button class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>'
-        + '<h4 class="modal-title" style="font-size:14px;" id="myConfirmLabel">确认</h4></div>'
+        + '<h4 class="modal-title" style="font-size:14px;" id="myConfirmLabel">纭</h4></div>'
         + '<div class="modal-body text-center" style="font-size:16px;">' + message + '</div>'
         + '<div class="modal-footer">'
-        + '<button class="btn btn-sm btn-info" data-dismiss="modal">取消</button>'
-        + '<button class="btn btn-sm btn-danger" id="confirmOK">确定</button>'
+        + '<button class="btn btn-sm btn-info" data-dismiss="modal">鍙栨秷</button>'
+        + '<button class="btn btn-sm btn-danger" id="confirmOK">纭畾</button>'
         + '</div></div></div></div>';
 
     $('body').append(html);

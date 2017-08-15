@@ -37,10 +37,11 @@
     </select>
 
     <insert id="save" parameterType="org.yejh.shop.entity.StudInfo">
-        INSERT INTO stud_info(sname, snumber, sregister_time)
+        INSERT INTO stud_info(sname, snumber, sregister_time, age, gender, grade, professional, create_time)
         VALUES
         (
-        #{sName, jdbcType=VARCHAR}, #{sNumber, jdbcType=INTEGER}, #{sRegisterTime, jdbcType=TIMESTAMP}
+        #{sName, jdbcType=VARCHAR}, #{sNumber, jdbcType=INTEGER}, #{sRegisterTime, jdbcType=TIMESTAMP}, #{age, jdbcType=INTEGER},
+        #{gender, jdbcType=INTEGER}, #{grade, jdbcType=INTEGER}, #{professional, jdbcType=VARCHAR}, NOW()
         )
     </insert>
 

@@ -12,18 +12,20 @@ public class User implements Serializable {
     private String password;
     private String userName;
     private Integer gender;// 0 → female, 1 → male
+    private Integer role;// 1 → user, 2 → admin
     private Date createTime;
     private Date updateTime;
 
     public User() {
     }
 
-    public User(String email, String account, String password, String userName, Integer gender, Date createTime, Date updateTime) {
+    public User(String email, String account, String password, String userName, Integer gender, Integer role, Date createTime, Date updateTime) {
         this.email = email;
         this.account = account;
         this.password = password;
         this.userName = userName;
         this.gender = gender;
+        this.role = role;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -68,6 +70,14 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -92,6 +102,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
                 ", gender=" + gender +
+                ", role=" + role +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';
