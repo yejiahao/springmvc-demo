@@ -10,7 +10,7 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
-    <select id="getUserByAccountOrEamil" resultMap="userRM" parameterType="java.util.HashMap">
+    <select id="getUserByAccountOrEmail" resultMap="userRM" parameterType="java.util.HashMap">
         SELECT *
         FROM
         user
@@ -20,4 +20,20 @@
         ORDER BY uid
         LIMIT 1
     </select>
+
+    <update id="updatePassword" parameterType="org.yejh.shop.entity.User">
+        UPDATE user
+        SET
+        password = #{password}, update_time = NOW()
+        <where>
+            <choose>
+                <when test="uId != null and uId != ''">
+                    AND uid = #{uId}
+                </when>
+                <otherwise>
+                    AND uid IS NULL
+                </otherwise>
+            </choose>
+        </where>
+    </update>
 </mapper>

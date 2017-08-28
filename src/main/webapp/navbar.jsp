@@ -1,4 +1,8 @@
+<%@ page import="org.yejh.shop.servlet.MySessionListener" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    long onlineCount = MySessionListener.getCount();
+%>
 
 <body>
 <nav class="navbar navbar-default navbar-fixed-top alert-info">
@@ -30,13 +34,15 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <li><a>当前在线人数<span class="badge"><%=onlineCount %></span></a></li>
                 <li><a href="#">用户管理</a></li>
                 <li><a href="#">系统管理</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">${loginUser['userName']}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
+                        <li id="settingli"><a href="${pageContext.request.contextPath}/login/accountSetting"><span
+                                class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
                         <li role="separator" class="divider"></li>
                         <li id="exitli"><a href="${pageContext.request.contextPath}/login/logout"><span
                                 class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 退出</a></li>

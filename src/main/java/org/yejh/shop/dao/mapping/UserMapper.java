@@ -8,5 +8,7 @@ import java.util.Map;
  * Created by Ye Jiahao on 2017/06/04.
  */
 public interface UserMapper {
-    User getUserByAccountOrEamil(Map<String, Object> paramMap);
+    User getUserByAccountOrEmail(Map<String, Object> paramMap);
+
+    Integer updatePassword(User user);
 }

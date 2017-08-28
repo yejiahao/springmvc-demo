@@ -20,6 +20,10 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
+    <listener>
+        <description>session listener</description>
+        <listener-class>org.yejh.shop.servlet.MySessionListener</listener-class>
+    </listener>
 
     <filter>
         <filter-name>encodingFilter</filter-name>

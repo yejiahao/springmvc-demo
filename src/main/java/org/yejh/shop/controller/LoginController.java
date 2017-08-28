@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.yejh.shop.constant.Constants;
@@ -39,11 +37,11 @@ public class LoginController extends BaseController {
             }
             LOG.info("{} have been logged in", session.getAttribute("loginUser"));
         } else {
-            LOG.info("account: {}\tpassword: {}", account, password);
+            LOG.info("account: {}", account);
             Map<String, Object> resultMap = loginService.loginVerify(account, password);
             int code = Integer.parseInt(String.valueOf(resultMap.get("code")));
             if (code == Constants.SUCCESS_CODE) {
-                User user = (User) resultMap.get("user");
+                User user = (User) resultMap.get("entity");
                 session.setAttribute("loginUser", user);
                 session.setAttribute("now", new Date());
             } else {
@@ -53,6 +51,19 @@ public class LoginController extends BaseController {
             }
         }
         return mv;
+    }
+
+    @RequestMapping(value = "/accountSetting", method = {RequestMethod.GET})
+    public String accountSetting() {
+        return "/login/accountsetting";
+    }
+
+    @RequestMapping(value = "/updatePassword", method = {RequestMethod.PUT})
+    @ResponseBody
+    public Object updatePassword(@RequestBody String[] passwdArray, HttpSession session) {
+        User user = (User) session.getAttribute("loginUser");
+        Map<String, Object> resultMap = loginService.updatePassword(passwdArray, user);
+        return resultMap;
     }
 
     @RequestMapping(value = "/uploadFile")
@@ -88,5 +99,4 @@ public class LoginController extends BaseController {
         mv.setViewName("redirect:/login.jsp");
         return mv;
     }
-
 }

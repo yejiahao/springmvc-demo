@@ -24,7 +24,11 @@
             <include refid="where_studInfo"/>
         </where>
         ORDER BY sid
-        LIMIT #{offset}, #{length}
+        <choose>
+            <when test="offset != null and length != null">
+                LIMIT #{offset}, #{length}
+            </when>
+        </choose>
     </select>
 
     <select id="getStudInfoLocation" parameterType="java.util.HashMap" resultMap="studInfoLocationRM">

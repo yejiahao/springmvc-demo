@@ -9,9 +9,9 @@ import org.yejh.shop.constant.Constants;
 import org.yejh.shop.dao.LoginDao;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.LoginService;
+import org.yejh.shop.utils.CommonUtil;
 import org.yejh.shop.utils.MD5Util;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -27,31 +27,57 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Map<String, Object> loginVerify(String account, String password) {
-
-        Map<String, Object> resultMap = new HashMap<String, Object>() {
-            {
-                put("code", Constants.FAILURE_CODE);
-                put("message", Constants.USER_NOT_EXISTS);
-            }
-        };
+        Integer code = Constants.FAILURE_CODE;
+        String message = Constants.USER_NOT_EXISTS;
+        Object entity = null;
         try {
-            User user = loginDao.getUserByAccountOrEamil(account);
+            User user = loginDao.getUserByAccountOrEmail(account);
             if (user != null) {
                 password = MD5Util.encode(password);
                 if (password.equals(user.getPassword())) {
-                    resultMap.put("code", Constants.SUCCESS_CODE);
-                    resultMap.put("message", Constants.USER_VERIFY_SUCCESS);
-                    resultMap.put("user", user);
+                    code = Constants.SUCCESS_CODE;
+                    message = Constants.USER_VERIFY_SUCCESS;
+                    entity = user;
                 } else {
-                    resultMap.put("message", Constants.PASS_ERROR);
+                    message = Constants.PASS_ERROR;
                 }
             }
         } catch (Exception e) {
             LOG.error("loginVerify: ", e);
-            resultMap.put("message", Constants.SERVER_INTERNAL_EXCEPTION);
+            message = Constants.SERVER_INTERNAL_EXCEPTION;
         } finally {
-            LOG.info("resultMap: {}", resultMap);
-            return resultMap;
+            return CommonUtil.initResultMap(code, message, entity);
+        }
+    }
+
+    @Override
+    public Map<String, Object> updatePassword(String[] passwdArray, User user) {
+        // passwdArray[]: [oldPasswd, newPasswd1, newPasswd2]
+        Integer code = Constants.FAILURE_CODE;
+        String message = "";
+        try {
+            if (passwdArray[1] == null || !passwdArray[1].equals(passwdArray[2])) {
+                message = Constants.TWICE_NEW_PASSWD;
+            } else if (passwdArray[1].equals(passwdArray[0])) {
+                message = Constants.NOT_ALLOW_PREV_PASSWD;
+            } else if (!MD5Util.encode(passwdArray[0]).equals(user.getPassword())) {
+                message = Constants.PREV_PASSWD_ERROR;
+            } else {
+                Integer uId = user.getuId();
+                String password = MD5Util.encode(passwdArray[1]);
+                if (loginDao.updatePassword(new User(uId, password)) == 0) {
+                    message = Constants.PASSWD_MODIFY_FAILURE;
+                } else {
+                    user.setPassword(password);// session与DB password保持同步
+                    code = Constants.SUCCESS_CODE;
+                    message = Constants.PASSWD_MODIFY_SUCCESS;
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("updatePassword: ", e);
+            message = Constants.SERVER_INTERNAL_EXCEPTION;
+        } finally {
+            return CommonUtil.initResultMap(code, message);
         }
     }
 }

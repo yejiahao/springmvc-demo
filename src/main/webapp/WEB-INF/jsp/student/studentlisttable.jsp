@@ -94,6 +94,22 @@
 
 <script>
     $('#infoModal').on('show.bs.modal', function (event) {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/location/getProvinces',
+            method: 'GET',
+            contentType: 'application/json;charset=UTF-8',
+            async: false,
+            data: null,
+            success: function (data) {
+                initSel('#provinceSel', data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                window.location.href = '${pageContext.request.contextPath}/login.jsp';
+            },
+            dataType: 'json'
+        });
+
         var target = $(event.relatedTarget);
         var sId = target.data('id');
         var sName = target.data('name');
@@ -188,23 +204,6 @@
             }
         });
     }
-
-    $(function () {
-        $.ajax({
-            url: '${pageContext.request.contextPath}/location/getProvinces',
-            method: 'GET',
-            contentType: 'application/json;charset=UTF-8',
-            data: null,
-            success: function (data) {
-                initSel('#provinceSel', data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(errorThrown);
-                window.location.href = '${pageContext.request.contextPath}/login.jsp';
-            },
-            dataType: 'json'
-        });
-    });
 
     $('#provinceSel').change(function () {
         $.ajax({

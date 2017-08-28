@@ -25,8 +25,6 @@ public class StudInfoDaoImpl implements StudInfoDao {
         studInfo.setsId(id);
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("studInfo", studInfo);
-        paramMap.put("offset", 0);
-        paramMap.put("length", 100000);// TODO
         studInfo = mapper.getStudInfo(paramMap).get(0);
         return studInfo;
     }

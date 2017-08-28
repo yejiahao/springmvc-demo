@@ -1,5 +1,7 @@
 package org.yejh.shop.service;
 
+import org.yejh.shop.entity.User;
+
 import java.util.Map;
 
 /**
@@ -7,4 +9,6 @@ import java.util.Map;
  */
 public interface LoginService {
     Map<String, Object> loginVerify(String account, String password);
+
+    Map<String, Object> updatePassword(String[] passwdArray, User user);
 }

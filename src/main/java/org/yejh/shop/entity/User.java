@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by Administrator on 2017/5/30.
  */
 public class User implements Serializable {
+    private Integer uId;
     private String email;
     private String account;
     private String password;
@@ -19,6 +20,11 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(Integer uId, String password) {
+        this.uId = uId;
+        this.password = password;
+    }
+
     public User(String email, String account, String password, String userName, Integer gender, Integer role, Date createTime, Date updateTime) {
         this.email = email;
         this.account = account;
@@ -28,6 +34,14 @@ public class User implements Serializable {
         this.role = role;
         this.createTime = createTime;
         this.updateTime = updateTime;
+    }
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
     }
 
     public String getEmail() {
@@ -97,7 +111,8 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "uId=" + uId +
+                ", email='" + email + '\'' +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
