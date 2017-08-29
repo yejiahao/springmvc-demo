@@ -1,30 +1,78 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/header.jspf" %>
-<%@ include file="/footer.jspf" %>
-
-<body>
-<%@ include file="/navbar.jsp" %>
-<div style="margin-top: 80px">
-    <c:if test="${loginUser['gender'] == 1}">
-        <%request.setAttribute("color", "dodgerblue");%>
-    </c:if>
-    <c:if test="${loginUser['gender'] == 0}">
-        <%request.setAttribute("color", "hotpink");%>
-    </c:if>
-
-    <h2 class="text-center"><span style="color: ${color}">${loginUser['userName']}</span>, 欢迎来到系统网站</h2>
-    <br>
-    <h3 class="text-center">登录时间：
-        <fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>
-    </h3>
-
-</div>
-</body>
 <script>
     $(function () {
-        acitveTabById('mainli');
+        // jquery style must add "[0]"
+        ($('#mainli').find('a'))[0].click();
+
+        getOnlineCount();
+        setInterval(getOnlineCount, 10000);
     });
+
+    function getOnlineCount() {
+        $.get('${pageContext.request.contextPath}/login/getOnlineCount', function (data) {
+            $('.badge').html(data);
+        });
+    }
+
+    function setIframe(url) {
+        $('#j-mainContent').prop('src', '${pageContext.request.contextPath}' + url);
+    }
+
+    function changeFrameHeight() {
+        $('#j-mainContent').prop('height', $(window).height());
+    }
+    window.onresize = function () {
+        changeFrameHeight();
+    }
 </script>
+<body style="overflow-y:hidden">
+<nav class="navbar navbar-default navbar-fixed-top alert-info">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"><img alt="Brand" src="${pageContext.request.contextPath}/image/logo.png"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="mainli"><a href="javascript:setIframe('/loginsuccess.jsp')">首页</a></li>
+                <li id="studentli"><a href="javascript:setIframe('/stud/showStudInfos')">学生管理</a></li>
+                <li id="achievementli"><a href="#">成绩管理</a></li>
+                <li id="courseli"><a href="#">课程管理</a></li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>当前在线人数<span class="badge">*</span></a></li>
+                <li><a href="#">用户管理</a></li>
+                <li><a href="#">系统管理</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">${loginUser['userName']}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="settingli"><a href="javascript:setIframe('/login/accountSetting')">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li id="exitli"><a href="${pageContext.request.contextPath}/login/logout">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<iframe frameborder="0" id="j-mainContent" onload="changeFrameHeight()"></iframe>
+<%@ include file="/footer.jspf" %>
+</body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.yejh.shop.constant.Constants;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.LoginService;
+import org.yejh.shop.servlet.MySessionListener;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,12 @@ public class LoginController extends BaseController {
             }
         }
         return mv;
+    }
+
+    @RequestMapping(value = "/getOnlineCount", method = {RequestMethod.GET})
+    @ResponseBody
+    public long getOnlineCount() {
+        return MySessionListener.getCount();
     }
 
     @RequestMapping(value = "/accountSetting", method = {RequestMethod.GET})
