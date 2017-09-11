@@ -15,7 +15,10 @@
         });
     }
 
-    function setIframe(url) {
+    function setIframe(url, obj) {
+        $('.active').removeClass('active');
+        $(obj).parent().addClass('active');
+
         $('#j-mainContent').prop('src', '${pageContext.request.contextPath}' + url);
     }
 
@@ -42,8 +45,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li id="mainli"><a href="javascript:setIframe('/loginsuccess.jsp')">首页</a></li>
-                <li id="studentli"><a href="javascript:setIframe('/stud/showStudInfos')">学生管理</a></li>
+                <li id="mainli"><a href="#" onclick="javascript:setIframe('/loginsuccess.jsp', this)">首页</a></li>
+                <li id="studentli"><a href="#" onclick="javascript:setIframe('/stud/showStudInfos', this)">学生管理</a></li>
                 <li id="achievementli"><a href="#">成绩管理</a></li>
                 <li id="courseli"><a href="#">课程管理</a></li>
             </ul>
@@ -61,7 +64,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">${loginUser['userName']}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li id="settingli"><a href="javascript:setIframe('/login/accountSetting')">
+                        <li id="settingli"><a href="#" onclick="javascript:setIframe('/login/accountSetting', this)">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 账号设置</a></li>
                         <li role="separator" class="divider"></li>
                         <li id="exitli"><a href="${pageContext.request.contextPath}/login/logout">

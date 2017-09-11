@@ -24,9 +24,13 @@
         }
 
         iframe {
-            padding-top: 60px;
+            padding-top: 50px;
             padding-bottom: 30px;
             width: 100%
+        }
+
+        body {
+            background: url('${pageContext.request.contextPath}/image/background.gif');
         }
     </style>
 </head>
