@@ -31,6 +31,10 @@
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <div class="checkbox">
+            <a href="${pageContext.request.contextPath}/register.jsp" class="text-left">立即注册</a>
+            <a href="#" class="pull-right">忘记密码？</a>
+        </div>
         <span style="color:red">${errorMessage}</span>
     </form>
 

@@ -74,8 +74,7 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = "/uploadFile")
-    public String uploadFile(@RequestParam(value = "file", required = false) MultipartFile file,
-                             HttpServletRequest request, Model model) {
+    public String uploadFile(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, Model model) {
         String parent = request.getSession().getServletContext().getRealPath("upload");
         String child = file.getOriginalFilename();
 
