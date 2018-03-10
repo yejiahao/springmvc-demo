@@ -18,7 +18,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="org.yejh.shop.utils.DateFormatter">
+                <bean class="org.yejh.shop.util.DateFormatter">
                     <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
                 </bean>
             </set>

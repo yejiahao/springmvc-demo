@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.yejh.shop.entity.Location;
-import org.yejh.shop.utils.XmlUtil;
+import org.yejh.shop.util.XmlUtil;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;

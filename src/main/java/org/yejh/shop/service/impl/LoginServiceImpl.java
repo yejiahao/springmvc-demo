@@ -9,8 +9,8 @@ import org.yejh.shop.constant.Constants;
 import org.yejh.shop.dao.LoginDao;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.LoginService;
-import org.yejh.shop.utils.CommonUtil;
-import org.yejh.shop.utils.MD5Util;
+import org.yejh.shop.util.CommonUtil;
+import org.yejh.shop.util.MD5Util;
 
 import java.util.Map;
 
@@ -68,7 +68,7 @@ public class LoginServiceImpl implements LoginService {
                 if (loginDao.updatePassword(new User(uId, password)) == 0) {
                     message = Constants.PASSWD_MODIFY_FAILURE;
                 } else {
-                    user.setPassword(password);// session与DB password保持同步
+                    user.setPassword(password);
                     code = Constants.SUCCESS_CODE;
                     message = Constants.PASSWD_MODIFY_SUCCESS;
                 }

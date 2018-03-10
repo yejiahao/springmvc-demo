@@ -1,4 +1,4 @@
-package org.yejh.shop.utils;
+package org.yejh.shop.util;
 
 import org.springframework.format.Formatter;
 
