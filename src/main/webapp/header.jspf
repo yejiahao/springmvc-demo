@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css">
     <link rel="icon" href="${pageContext.request.contextPath}/image/favicon.ico">
-    <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
