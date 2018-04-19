@@ -374,7 +374,9 @@
                 text = "",
                 title = "",
                 itemContainerClass = this.options.itemContainerClass(type, page, this.currentPage),
+                itemContainerClass4Bootstrap4 = 'page-item',
                 itemContentClass = this.getValueFromOption(this.options.itemContentClass, type, page, this.currentPage),
+                itemContentClass4Bootstrap4 = 'page-link',
                 tooltipOpts = null;
 
 
@@ -407,9 +409,9 @@
                 break;
             }
 
-            itemContainer.addClass(itemContainerClass).append(itemContent);
+            itemContainer.addClass(itemContainerClass).addClass(itemContainerClass4Bootstrap4).append(itemContent);
 
-            itemContent.addClass(itemContentClass).html(text).on("click", null, {type: type, page: page}, $.proxy(this.onPageItemClicked, this));
+            itemContent.addClass(itemContentClass).addClass(itemContentClass4Bootstrap4).html(text).on("click", null, {type: type, page: page}, $.proxy(this.onPageItemClicked, this));
 
             if (this.options.pageUrl) {
                 itemContent.attr("href", this.getValueFromOption(this.options.pageUrl, type, page, this.currentPage));

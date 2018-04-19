@@ -38,6 +38,9 @@ public class StudentController extends BaseController {
 
         Integer totalCounts = studInfoService.totalCounts(studInfo);
         Integer totalPages = totalCounts % pageLength == 0 ? totalCounts / pageLength : totalCounts / pageLength + 1;
+        if (totalPages < 1) {
+            totalPages = 1;// avoid bootstrap-paginator.js throw "Page out of range"
+        }
         LOG.info("totalCounts: {}, totalPages: {}", totalCounts, totalPages);
 
 

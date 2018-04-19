@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/header.jspf" %>
 <body>
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Library</a></li>
-        <li class="active">Data</li>
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active">Data</li>
     </ol>
 
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4>修改密码</h4></div>
-        <div class="panel-body">
+    <div class="card">
+        <div class="card-header">
+            <h4>修改密码</h4>
+        </div>
+        <div class="card-body">
             <form id="updatePasswdForm">
                 <div class="form-group">
                     <div class="row">

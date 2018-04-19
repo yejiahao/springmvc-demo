@@ -1,29 +1,39 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/header.jspf" %>
 <body>
 <div class="container">
-    <div style="padding: 10px 75% 10px 1%;">
+    <div style="padding: 10px 70% 10px 1%;">
         <div class="input-group input-group-sm modal-input">
-            <span class="input-group-addon">姓名</span>
+            <div class="input-group-prepend">
+                <span class="input-group-text">姓名</span>
+            </div>
             <input type="text" class="form-control" id="sName" name="sName"/>
         </div>
         <div class="input-group input-group-sm modal-input">
-            <span class="input-group-addon">学号</span>
+            <div class="input-group-prepend">
+                <span class="input-group-text">学号</span>
+            </div>
             <input type="text" class="form-control" id="sNumber" name="sNumber"
                    onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="9"/>
         </div>
         <div class="input-group input-group-sm modal-input">
-            <span class="input-group-addon">注册日期</span>
+            <div class="input-group-prepend">
+                <span class="input-group-text">注册日期</span>
+            </div>
             <input type="text" class="form-control datetimepicker" id="sRegisterTimeBegin"
                    name="sRegisterTimeBegin"/>
-            <span class="input-group-addon">到</span>
+            <div class="input-group-prepend">
+                <span class="input-group-text">到</span>
+            </div>
             <input type="text" class="form-control datetimepicker" id="sRegisterTimeEnd" name="sRegisterTimeEnd"/>
         </div>
 
         <div class="input-group input-group-sm modal-input">
-            <span class="input-group-addon">所属年级</span>
+            <div class="input-group-prepend">
+                <span class="input-group-text">所属年级</span>
+            </div>
             <select class="form-control" id="grade" name="grade">
                 <option value="0">全部</option>
                 <option value="1">一年级</option>
@@ -45,8 +55,8 @@
         <input type="hidden" id="hidden_grade"/>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="card">
+        <div class="card-header">
             <span style="font-size: 20px;">学生信息</span>
             <div style="float: right;">
                 <button class="btn btn-info" id="create">添加学生</button>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <table class="table">
@@ -13,17 +13,17 @@
     <tbody>
     <c:forEach var="student" items="${studentList}" varStatus="status">
         <c:choose>
-            <c:when test="${status.index % 4 == 0}">
-                <tr class="success">
+            <c:when test="${status.index % 4 eq 0}">
+                <tr class="alert-success">
             </c:when>
-            <c:when test="${status.index % 4 == 1}">
-                <tr class="danger">
+            <c:when test="${status.index % 4 eq 1}">
+                <tr class="alert-danger">
             </c:when>
-            <c:when test="${status.index % 4 == 2}">
-                <tr class="warning">
+            <c:when test="${status.index % 4 eq 2}">
+                <tr class="alert-warning">
             </c:when>
-            <c:when test="${status.index % 4 == 3}">
-                <tr class="info">
+            <c:when test="${status.index % 4 eq 3}">
+                <tr class="alert-info">
             </c:when>
         </c:choose>
         <td>${status.index+1}</td>
@@ -34,12 +34,12 @@
         <td>
             <a data-id="${student.sId}" data-name="${student.sName}" data-number="${student.sNumber}"
                data-toggle="modal" href="#infoModal">
-                <span class="glyphicon glyphicon-pencil"></span>
+                <i class="fa fa-pencil fa-lg"></i>
             </a>
             <sapn style="margin:15px"></sapn>
             <a data-id="${student.sId}" data-name="${student.sName}" data-number="${student.sNumber}"
                class="deleteLink">
-                <span class="glyphicon glyphicon-trash"></span>
+                <i class="fa fa-trash fa-lg"></i>
             </a>
         </td>
         </tr>
@@ -47,39 +47,43 @@
     </tbody>
 </table>
 
-<div id="pageLayer" style="padding-right: 20px;">
-    <nav aria-label="Page navigation" class="text-right">
-        <ul class="pagination" id="pageLayerul"></ul>
-    </nav>
-</div>
+<nav class="offset-7">
+    <ul class="pagination" id="pageLayerul"></ul>
+</nav>
 
 <!-- Modal -->
 <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button>
                 <h4 class="modal-title" id="myModalLabel">修改信息</h4>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-remove fa-lg"></i>
+                </button>
             </div>
             <div class="modal-body" style="padding: 40px">
                 <input type="hidden" value=""/>
                 <label></label>
                 <div class="input-group input-group-lg modal-input">
-                    <span class="input-group-addon">省份</span>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">省份</span>
+                    </div>
                     <select class="form-control" id="provinceSel">
                         <option value='0'>请选择</option>
                     </select>
                 </div>
                 <div class="input-group input-group-lg modal-input">
-                    <span class="input-group-addon">城市</span>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">城市</span>
+                    </div>
                     <select class="form-control" id="citySel">
                         <option value='0'>请选择</option>
                     </select>
                 </div>
                 <div class="input-group input-group-lg modal-input">
-                    <span class="input-group-addon">地区</span>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">地区</span>
+                    </div>
                     <select class="form-control" id="areaSel">
                         <option value='0'>请选择</option>
                     </select>

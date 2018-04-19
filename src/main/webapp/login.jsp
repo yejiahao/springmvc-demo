@@ -1,10 +1,6 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + request.getContextPath() + "/";
-%>
 
 <%@ include file="/header.jspf" %>
 <%@ include file="/footer.jspf" %>
@@ -18,11 +14,15 @@
           action="${pageContext.request.contextPath}/login/login" method="post">
         <h2 class="form-signin-heading">登录</h2>
         <div class="input-group input-group-lg">
-            <span class="input-group-addon glyphicon glyphicon-user" aria-hidden="true"></span>
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+            </div>
             <input type="text" name="account" id="account" class="form-control" placeholder="邮箱/账号" required autofocus>
         </div>
         <div class="input-group input-group-lg">
-            <span class="input-group-addon glyphicon glyphicon-lock" aria-hidden="true"></span>
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-lock fa-fw"></i></span>
+            </div>
             <input type="password" name="password" id="password" class="form-control" placeholder="密码" required>
         </div>
         <div class="checkbox">
@@ -33,7 +33,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
         <div class="checkbox">
             <a href="${pageContext.request.contextPath}/register.jsp" class="text-left">立即注册</a>
-            <a href="#" class="pull-right">忘记密码？</a>
+            <a href="#" class="float-right">忘记密码？</a>
         </div>
         <span style="color:red">${errorMessage}</span>
     </form>

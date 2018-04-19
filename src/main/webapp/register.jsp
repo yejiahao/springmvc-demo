@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -6,11 +6,12 @@
 <%@ include file="/footer.jspf" %>
 <body>
 <div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4>注册新用户</h4>
+    <div class="card">
+        <div class="card-header">
+            <h4>注册新用户</h4>
             <button class="text-right btn">返回</button>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <form id="updatePasswdForm">
                 <div class="form-group">
                     <div class="row">
