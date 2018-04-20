@@ -183,9 +183,7 @@
     });
 
     $('.deleteLink').on('click', function () {
-        var data = $(this).data();
-        var message = '确定要删除<span class="label label-danger">' + data['name'] + ' | ' + data['number'] + '</span>？';
-        confirm(deteleItem, $(this), message);
+        confirm(deteleItem, $(this));
     })
 
     function deteleItem($ele) {

@@ -38,7 +38,7 @@ public class StudInfoServiceTest {
 
     @Test
     public void testGetById() {
-        Integer sId = 86;
+        Integer sId = 1;
         StudInfo student = studInfoService.getById(sId);
         LOG.info(JSON.toJSONStringWithDateFormat(student, "yyyy-MM-dd HH:mm:ss"));
     }

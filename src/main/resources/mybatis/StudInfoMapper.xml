@@ -102,9 +102,11 @@
         <if test="studInfo.sNumber != null and studInfo.sNumber != ''">
             AND sNumber LIKE CONCAT('%', #{studInfo.sNumber}, '%')
         </if>
-        <if test="studInfo.sRegisterTimeBegin != null and studInfo.sRegisterTimeEnd != null">
-            AND sregister_time BETWEEN #{studInfo.sRegisterTimeBegin} AND DATE_ADD(#{studInfo.sRegisterTimeEnd},
-            INTERVAL 1 DAY)
+        <if test="studInfo.sRegisterTimeBegin != null">
+            <![CDATA[ AND sregister_time >= #{studInfo.sRegisterTimeBegin} ]]>
+        </if>
+        <if test="studInfo.sRegisterTimeEnd != null">
+            <![CDATA[ AND sregister_time < DATE_ADD(#{studInfo.sRegisterTimeEnd}, INTERVAL 1 DAY) ]]>
         </if>
         <if test="studInfo.grade != null and studInfo.grade != ''">
             AND grade = #{studInfo.grade}

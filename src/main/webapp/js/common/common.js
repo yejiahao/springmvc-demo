@@ -6,10 +6,12 @@ function acitveTabById(id) {
     $('#' + id).addClass('active');
 }
 
-function confirm(func, data, message) {
+function confirm(func, $ele) {
     if ($('#myConfirm').length > 0) {
         $('#myConfirm').remove();
     }
+
+    var message = '确定要删除<span class="badge badge-danger">' + $ele.data()['name'] + ' | ' + $ele.data()['number'] + '</span>？';
 
     var html = '<div class="modal fade" id="myConfirm" tabindex="-1" role="dialog" aria-labelledby="myConfirmLabel">'
         + '<div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-header">'
@@ -25,7 +27,7 @@ function confirm(func, data, message) {
     $('#myConfirm').modal('show');
 
     $('#confirmOK').on('click', function () {
-        func(data);
+        func($ele);
         $('#myConfirm').modal('hide');
     })
 }
