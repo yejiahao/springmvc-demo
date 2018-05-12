@@ -5,6 +5,7 @@ package org.yejh.shop.constant;
  */
 public class Constants {
     public static final Integer SUCCESS_CODE = 100;
+    public static final Integer USER_VALIDATE_ERROR_CODE = 501;
     public static final Integer FAILURE_CODE = 999;
 
     public static final String USER_NOT_EXISTS = "不存在该用户";
@@ -17,4 +18,7 @@ public class Constants {
     public static final String PREV_PASSWD_ERROR = "原密码错误！";
     public static final String PASSWD_MODIFY_SUCCESS = "密码修改成功！";
     public static final String PASSWD_MODIFY_FAILURE = "密码修改失败！";
+    public static final String USER_REGISTER_SUCCESS = "用户注册成功！";
+    public static final String USER_ACCOUNT_NOT_EMPTY = "登录账号不能为空！";
+    public static final String USER_NAME_NOT_EMPTY = "真实姓名不能为空！";
 }

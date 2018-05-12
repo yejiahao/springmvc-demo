@@ -1,7 +1,5 @@
 package org.yejh.shop.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.yejh.shop.constant.Constants;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.LoginService;
+import org.yejh.shop.service.RegisterService;
 import org.yejh.shop.servlet.MySessionListener;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,11 +22,13 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController extends BaseController {
-    private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
-
     @Autowired
     @Qualifier("loginService")
     private LoginService loginService;
+
+    @Autowired
+    @Qualifier("registerService")
+    private RegisterService registerService;
 
     @RequestMapping(value = "/login")
     public ModelAndView login(String account, String password, HttpSession session) {
@@ -73,6 +74,13 @@ public class LoginController extends BaseController {
         return resultMap;
     }
 
+    @RequestMapping(value = "/register", method = {RequestMethod.POST})
+    @ResponseBody
+    public Object register(User registerUser) {
+        Map<String, Object> resultMap = registerService.register(registerUser);
+        return resultMap;
+    }
+
     @RequestMapping(value = "/uploadFile")
     public String uploadFile(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, Model model) {
         String parent = request.getSession().getServletContext().getRealPath("upload");
@@ -99,7 +107,10 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "/logout", method = {RequestMethod.GET})
     public ModelAndView logout(HttpSession session) {
-        LOG.info("session: {}", session);
+        Object user = session.getAttribute("loginUser");
+        if (user instanceof User) {
+            LOG.info("user logout: {}", ((User) user).getAccount());
+        }
         session.invalidate();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("redirect:/login.jsp");

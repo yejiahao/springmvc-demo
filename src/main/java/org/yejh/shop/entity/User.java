@@ -9,11 +9,14 @@ import java.util.Date;
 public class User implements Serializable {
     private Integer uId;
     private String email;
+    private String emailAccount;
+    private String emailDomain;
     private String account;
     private String password;
+    private String passwdConfirm;
     private String userName;
     private Integer gender;// 0 → female, 1 → male
-    private Integer role;// 1 → user, 2 → admin
+    private Integer role;// 1 → student, 2 → teacher, 3 → admin
     private Date createTime;
     private Date updateTime;
 
@@ -25,10 +28,9 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(String email, String account, String password, String userName, Integer gender, Integer role, Date createTime, Date updateTime) {
+    public User(String email, String account, String userName, Integer gender, Integer role, Date createTime, Date updateTime) {
         this.email = email;
         this.account = account;
-        this.password = password;
         this.userName = userName;
         this.gender = gender;
         this.role = role;
@@ -52,6 +54,22 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getEmailAccount() {
+        return emailAccount;
+    }
+
+    public void setEmailAccount(String emailAccount) {
+        this.emailAccount = emailAccount;
+    }
+
+    public String getEmailDomain() {
+        return emailDomain;
+    }
+
+    public void setEmailDomain(String emailDomain) {
+        this.emailDomain = emailDomain;
+    }
+
     public String getAccount() {
         return account;
     }
@@ -66,6 +84,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswdConfirm() {
+        return passwdConfirm;
+    }
+
+    public void setPasswdConfirm(String passwdConfirm) {
+        this.passwdConfirm = passwdConfirm;
     }
 
     public String getUserName() {
@@ -114,7 +140,6 @@ public class User implements Serializable {
                 "uId=" + uId +
                 ", email='" + email + '\'' +
                 ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
                 ", gender=" + gender +
                 ", role=" + role +

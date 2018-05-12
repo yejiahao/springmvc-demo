@@ -11,4 +11,6 @@ public interface UserMapper {
     User getUserByAccountOrEmail(Map<String, Object> paramMap);
 
     Integer updatePassword(User user);
+
+    Integer registerUser(User user);
 }
