@@ -47,7 +47,8 @@
 </div>
 </body>
 <script>
-    $('#updatePasswdForm').on('submit', function () {
+    $('#updatePasswdForm').on('submit', function (event) {
+        event.preventDefault();
         var param = new Array();
         var formData = $(this).serializeArray();
         $.each(formData, function (index, element) {
@@ -58,8 +59,9 @@
             method: 'PUT',
             data: JSON.stringify(param),
             contentType: 'application/json;charset=UTF-8',
-            success: function (data) {
-                alert(data['message']);
+            success: function (result) {
+                var obj = JSON.parse(result);
+                alert(obj['message']);
             }
         });
     });

@@ -13,6 +13,7 @@ import org.yejh.shop.util.CommonUtil;
 import org.yejh.shop.util.MD5Util;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by Ye Jiahao on 2017/06/04.
@@ -56,11 +57,11 @@ public class LoginServiceImpl implements LoginService {
         Integer code = Constants.FAILURE_CODE;
         String message = "";
         try {
-            if (passwdArray[1] == null || !passwdArray[1].equals(passwdArray[2])) {
+            if (!Objects.equals(passwdArray[1], passwdArray[2])) {
                 message = Constants.TWICE_NEW_PASSWD;
-            } else if (passwdArray[1].equals(passwdArray[0])) {
+            } else if (Objects.equals(passwdArray[1], passwdArray[0])) {
                 message = Constants.NOT_ALLOW_PREV_PASSWD;
-            } else if (!MD5Util.encode(passwdArray[0]).equals(user.getPassword())) {
+            } else if (!Objects.equals(MD5Util.encode(passwdArray[0]), user.getPassword())) {
                 message = Constants.PREV_PASSWD_ERROR;
             } else {
                 Integer uId = user.getuId();
@@ -68,13 +69,12 @@ public class LoginServiceImpl implements LoginService {
                 if (loginDao.updatePassword(new User(uId, password)) == 0) {
                     message = Constants.PASSWD_MODIFY_FAILURE;
                 } else {
-                    user.setPassword(password);
                     code = Constants.SUCCESS_CODE;
                     message = Constants.PASSWD_MODIFY_SUCCESS;
                 }
             }
         } catch (Exception e) {
-            LOG.error("updatePassword: ", e);
+            LOG.error("updatePassword: " + e.getMessage(), e);
             message = Constants.SERVER_INTERNAL_EXCEPTION;
         } finally {
             return CommonUtil.initResultMap(code, message);

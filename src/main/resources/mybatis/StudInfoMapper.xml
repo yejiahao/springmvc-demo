@@ -40,7 +40,8 @@
         </where>
     </select>
 
-    <insert id="save" parameterType="org.yejh.shop.entity.StudInfo">
+    <insert id="save" useGeneratedKeys="true" keyColumn="sid" keyProperty="sId"
+            parameterType="org.yejh.shop.entity.StudInfo">
         INSERT INTO stud_info(sname, snumber, sregister_time, age, gender, grade, professional, create_time)
         VALUES
         (
