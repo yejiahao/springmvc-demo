@@ -30,7 +30,7 @@ public class LoginController extends BaseController {
     @Qualifier("registerService")
     private RegisterService registerService;
 
-    @RequestMapping(value = "/login")
+    @PostMapping(value = "/login")
     public ModelAndView login(String account, String password, HttpSession session) {
         ModelAndView mv = new ModelAndView("/main");
         if (session.getAttribute("loginUser") != null) {
@@ -55,18 +55,18 @@ public class LoginController extends BaseController {
         return mv;
     }
 
-    @RequestMapping(value = "/getOnlineCount", method = {RequestMethod.GET})
+    @GetMapping(value = "/getOnlineCount")
     @ResponseBody
     public long getOnlineCount() {
         return MySessionListener.getCount();
     }
 
-    @RequestMapping(value = "/accountSetting", method = {RequestMethod.GET})
+    @GetMapping(value = "/accountSetting")
     public String accountSetting() {
         return "/login/accountsetting";
     }
 
-    @RequestMapping(value = "/updatePassword", method = {RequestMethod.PUT})
+    @PutMapping(value = "/updatePassword")
     @ResponseBody
     public Object updatePassword(@RequestBody String[] passwdArray, HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
@@ -74,7 +74,7 @@ public class LoginController extends BaseController {
         return resultMap;
     }
 
-    @RequestMapping(value = "/register", method = {RequestMethod.POST})
+    @PostMapping(value = "/register")
     @ResponseBody
     public Object register(User registerUser) {
         Map<String, Object> resultMap = registerService.register(registerUser);
@@ -105,7 +105,7 @@ public class LoginController extends BaseController {
         return "/uploadSuccess";
     }
 
-    @RequestMapping(value = "/logout", method = {RequestMethod.GET})
+    @GetMapping(value = "/logout")
     public ModelAndView logout(HttpSession session) {
         Object user = session.getAttribute("loginUser");
         if (user instanceof User) {

@@ -2,8 +2,8 @@ package org.yejh.shop.controller;
 
 import org.dom4j.Element;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.yejh.shop.entity.Location;
 import org.yejh.shop.util.XmlUtil;
@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/location")
 public class LocationController extends BaseController {
-    @RequestMapping(value = "/getProvinces", method = {RequestMethod.GET})
+    @GetMapping(value = "/getProvinces")
     @ResponseBody
     public Object getProvinces(HttpSession session) {
         List<Map<String, String>> mapList = new ArrayList<>();
@@ -35,7 +35,7 @@ public class LocationController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/getCitiesByProvince", method = {RequestMethod.GET})
+    @GetMapping(value = "/getCitiesByProvince")
     @ResponseBody
     public Object getCitiesByProvince(HttpSession session, Location location) {
         LOG.info("enter getCitiesByProvince: {}", location);
@@ -55,7 +55,7 @@ public class LocationController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/getAreasByCity", method = {RequestMethod.GET})
+    @GetMapping(value = "/getAreasByCity")
     @ResponseBody
     public Object getAreasByCity(HttpSession session, Location location) {
         LOG.info("enter getAreasByCities: {}", location);

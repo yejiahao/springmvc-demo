@@ -3,9 +3,7 @@ package org.yejh.shop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.yejh.shop.entity.Location;
 import org.yejh.shop.entity.StudInfo;
@@ -50,7 +48,7 @@ public class StudentController extends BaseController {
         return mv;
     }
 
-    @RequestMapping(value = "/updateLocation", method = {RequestMethod.POST})
+    @PostMapping(value = "/updateLocation")
     @ResponseBody
     public Boolean updateLocation(StudInfo studInfo, Location location) {
         Boolean isUpdate = Boolean.FALSE;
@@ -66,7 +64,7 @@ public class StudentController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/getLocation", method = {RequestMethod.GET})
+    @GetMapping(value = "/getLocation")
     @ResponseBody
     public Object getLocation(StudInfo studInfo) {
         LOG.info("sId: {}", studInfo.getsId());
@@ -75,7 +73,7 @@ public class StudentController extends BaseController {
         return location;
     }
 
-    @RequestMapping(value = "/delStud", method = {RequestMethod.DELETE})
+    @DeleteMapping(value = "/delStud")
     @ResponseBody
     public Boolean delStud(Integer sId) {
         LOG.info("sId: {}", sId);
