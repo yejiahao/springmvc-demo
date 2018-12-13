@@ -193,13 +193,6 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- javaMail -->
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-
         <!-- xml -->
         <dependency>
             <groupId>dom4j</groupId>
@@ -219,23 +212,6 @@
             <version>4.3.3</version>
         </dependency>
 
-        <!-- zxing -->
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>javase</artifactId>
-            <version>3.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.influxdb</groupId>
-            <artifactId>influxdb-java</artifactId>
-            <version>2.5</version>
-        </dependency>
     </dependencies>
 
     <profiles>
