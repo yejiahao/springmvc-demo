@@ -55,7 +55,7 @@
             param.push(element['value']);
         });
         $.ajax({
-            url: '/login/updatePassword',
+            url: '${pageContext['request']['contextPath']}/login/updatePassword',
             method: 'PUT',
             data: JSON.stringify(param),
             contentType: 'application/json;charset=UTF-8',
