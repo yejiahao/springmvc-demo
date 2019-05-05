@@ -102,7 +102,7 @@ public class LoginController extends BaseController {
 
         model.addAttribute("filePath", request.getContextPath() + "/upload/" + child);
         LOG.info("uploading file...");
-        return "/uploadSuccess";
+        return "/uploadsuccess";
     }
 
     @GetMapping(value = "/logout")
