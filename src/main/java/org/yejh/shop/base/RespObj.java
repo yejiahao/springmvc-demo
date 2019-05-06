@@ -1,13 +1,15 @@
-package org.yejh.shop.constant;
+package org.yejh.shop.base;
 
 /**
  * Created by Ye Jiahao on 2017/06/04.
  */
-public class Constants {
+public class RespObj {
     public static final Integer SUCCESS_CODE = 100;
     public static final Integer USER_VALIDATE_ERROR_CODE = 501;
     public static final Integer FAILURE_CODE = 999;
 
+    public static final String IS_OK = "ok";
+    public static final String IS_ERROR = "error";
     public static final String USER_NOT_EXISTS = "不存在该用户";
     public static final String USER_EXISTS = "存在该用户";
     public static final String USER_VERIFY_SUCCESS = "用户校验成功";
@@ -21,4 +23,23 @@ public class Constants {
     public static final String USER_REGISTER_SUCCESS = "用户注册成功！";
     public static final String USER_ACCOUNT_NOT_EMPTY = "登录账号不能为空！";
     public static final String USER_NAME_NOT_EMPTY = "真实姓名不能为空！";
+
+    public Integer code;
+    public String message;
+    public Object data;
+
+    public RespObj(Integer code, String message, Object data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "RespObj{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

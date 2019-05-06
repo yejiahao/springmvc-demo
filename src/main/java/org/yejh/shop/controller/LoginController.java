@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.yejh.shop.constant.Constants;
+import org.yejh.shop.base.RespObj;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.LoginService;
 import org.yejh.shop.service.RegisterService;
@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Date;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -40,15 +39,13 @@ public class LoginController extends BaseController {
             LOG.info("{} have been logged in", session.getAttribute("loginUser"));
         } else {
             LOG.info("account: {}", account);
-            Map<String, Object> resultMap = loginService.loginVerify(account, password);
-            int code = Integer.parseInt(String.valueOf(resultMap.get("code")));
-            if (code == Constants.SUCCESS_CODE) {
-                User user = (User) resultMap.get("entity");
+            RespObj resp = loginService.loginVerify(account, password);
+            if (resp.code == RespObj.SUCCESS_CODE) {
+                User user = (User) resp.data;
                 session.setAttribute("loginUser", user);
                 session.setAttribute("now", new Date());
             } else {
-                String errorMessage = String.valueOf(resultMap.get("message"));
-                session.setAttribute("errorMessage", errorMessage);
+                session.setAttribute("errorMessage", resp.message);
                 mv.setViewName("redirect:/login.jsp");
             }
         }
@@ -70,15 +67,13 @@ public class LoginController extends BaseController {
     @ResponseBody
     public Object updatePassword(@RequestBody String[] passwdArray, HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
-        Map<String, Object> resultMap = loginService.updatePassword(passwdArray, user);
-        return resultMap;
+        return loginService.updatePassword(passwdArray, user);
     }
 
     @PostMapping(value = "/register")
     @ResponseBody
     public Object register(User registerUser) {
-        Map<String, Object> resultMap = registerService.register(registerUser);
-        return resultMap;
+        return registerService.register(registerUser);
     }
 
     @RequestMapping(value = "/uploadFile")

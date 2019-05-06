@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.yejh.shop.constant.Constants;
+import org.yejh.shop.base.RespObj;
 import org.yejh.shop.dao.RegisterDao;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.RegisterService;
@@ -14,7 +14,6 @@ import org.yejh.shop.util.CommonUtil;
 import org.yejh.shop.util.MD5Util;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Objects;
 
 @Service("registerService")
@@ -26,14 +25,14 @@ public class RegisterServiceImpl implements RegisterService {
     private RegisterDao registerDao;
 
     @Override
-    public Map<String, Object> register(User registerUser) {
-        Integer code = Constants.FAILURE_CODE;
+    public RespObj register(User registerUser) {
+        Integer code = RespObj.FAILURE_CODE;
         String message = "";
         try {
             StringBuffer info = new StringBuffer();
             registerValidate(registerUser, info);
             if (info.length() != 0) {
-                code = Constants.USER_VALIDATE_ERROR_CODE;
+                code = RespObj.USER_VALIDATE_ERROR_CODE;
                 message = info.toString();
             } else {
                 String emailAccount = registerUser.getEmailAccount();
@@ -47,26 +46,26 @@ public class RegisterServiceImpl implements RegisterService {
                 registerUser.setUpdateTime(now);
                 Integer result = registerDao.save(registerUser);
                 LOG.debug("register success: {}", registerUser);
-                code = Constants.SUCCESS_CODE;
-                message = Constants.USER_REGISTER_SUCCESS;
+                code = RespObj.SUCCESS_CODE;
+                message = RespObj.USER_REGISTER_SUCCESS;
             }
         } catch (Exception e) {
             LOG.error("register: " + e.getMessage(), e);
-            message = Constants.SERVER_INTERNAL_EXCEPTION;
+            message = RespObj.SERVER_INTERNAL_EXCEPTION;
         } finally {
-            return CommonUtil.initResultMap(code, message);
+            return CommonUtil.initResp(code, message);
         }
     }
 
     private void registerValidate(User registerUser, StringBuffer info) {
         if (StringUtils.isEmpty(registerUser.getAccount())) {
-            info.append(Constants.USER_ACCOUNT_NOT_EMPTY + "\n");
+            info.append(RespObj.USER_ACCOUNT_NOT_EMPTY + "\n");
         }
         if (StringUtils.isEmpty(registerUser.getUserName())) {
-            info.append(Constants.USER_NAME_NOT_EMPTY + "\n");
+            info.append(RespObj.USER_NAME_NOT_EMPTY + "\n");
         }
         if (!Objects.equals(registerUser.getPassword(), registerUser.getPasswdConfirm())) {
-            info.append(Constants.TWICE_NEW_PASSWD + "\n");
+            info.append(RespObj.TWICE_NEW_PASSWD + "\n");
         }
     }
 }

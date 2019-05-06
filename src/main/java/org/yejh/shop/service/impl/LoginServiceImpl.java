@@ -5,14 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.yejh.shop.constant.Constants;
+import org.yejh.shop.base.RespObj;
 import org.yejh.shop.dao.LoginDao;
 import org.yejh.shop.entity.User;
 import org.yejh.shop.service.LoginService;
 import org.yejh.shop.util.CommonUtil;
 import org.yejh.shop.util.MD5Util;
 
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -27,57 +26,57 @@ public class LoginServiceImpl implements LoginService {
     private LoginDao loginDao;
 
     @Override
-    public Map<String, Object> loginVerify(String account, String password) {
-        Integer code = Constants.FAILURE_CODE;
-        String message = Constants.USER_NOT_EXISTS;
-        Object entity = null;
+    public RespObj loginVerify(String account, String password) {
+        Integer code = RespObj.FAILURE_CODE;
+        String message = RespObj.USER_NOT_EXISTS;
+        Object data = null;
         try {
             User user = loginDao.getUserByAccountOrEmail(account);
             if (user != null) {
                 password = MD5Util.encode(password);
                 if (password.equals(user.getPassword())) {
-                    code = Constants.SUCCESS_CODE;
-                    message = Constants.USER_VERIFY_SUCCESS;
-                    entity = user;
+                    code = RespObj.SUCCESS_CODE;
+                    message = RespObj.USER_VERIFY_SUCCESS;
+                    data = user;
                 } else {
-                    message = Constants.PASS_ERROR;
+                    message = RespObj.PASS_ERROR;
                 }
             }
         } catch (Exception e) {
             LOG.error("loginVerify: ", e);
-            message = Constants.SERVER_INTERNAL_EXCEPTION;
+            message = RespObj.SERVER_INTERNAL_EXCEPTION;
         } finally {
-            return CommonUtil.initResultMap(code, message, entity);
+            return CommonUtil.initResp(code, message, data);
         }
     }
 
     @Override
-    public Map<String, Object> updatePassword(String[] passwdArray, User user) {
+    public RespObj updatePassword(String[] passwdArray, User user) {
         // passwdArray[]: [oldPasswd, newPasswd1, newPasswd2]
-        Integer code = Constants.FAILURE_CODE;
+        Integer code = RespObj.FAILURE_CODE;
         String message = "";
         try {
             if (!Objects.equals(passwdArray[1], passwdArray[2])) {
-                message = Constants.TWICE_NEW_PASSWD;
+                message = RespObj.TWICE_NEW_PASSWD;
             } else if (Objects.equals(passwdArray[1], passwdArray[0])) {
-                message = Constants.NOT_ALLOW_PREV_PASSWD;
+                message = RespObj.NOT_ALLOW_PREV_PASSWD;
             } else if (!Objects.equals(MD5Util.encode(passwdArray[0]), user.getPassword())) {
-                message = Constants.PREV_PASSWD_ERROR;
+                message = RespObj.PREV_PASSWD_ERROR;
             } else {
                 Integer uId = user.getuId();
                 String password = MD5Util.encode(passwdArray[1]);
                 if (loginDao.updatePassword(new User(uId, password)) == 0) {
-                    message = Constants.PASSWD_MODIFY_FAILURE;
+                    message = RespObj.PASSWD_MODIFY_FAILURE;
                 } else {
-                    code = Constants.SUCCESS_CODE;
-                    message = Constants.PASSWD_MODIFY_SUCCESS;
+                    code = RespObj.SUCCESS_CODE;
+                    message = RespObj.PASSWD_MODIFY_SUCCESS;
                 }
             }
         } catch (Exception e) {
             LOG.error("updatePassword: " + e.getMessage(), e);
-            message = Constants.SERVER_INTERNAL_EXCEPTION;
+            message = RespObj.SERVER_INTERNAL_EXCEPTION;
         } finally {
-            return CommonUtil.initResultMap(code, message);
+            return CommonUtil.initResp(code, message);
         }
     }
 }
