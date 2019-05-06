@@ -36,13 +36,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li id="mainli" class="nav-item"><a href="#" onclick="javascript:setIframe('/loginsuccess.jsp', this)"
+                <li id="mainli" class="nav-item"><a href="#" onclick="setIframe('/loginsuccess.jsp', this)"
                                                     class="nav-link">首页</a></li>
                 <li id="studentli" class="nav-item"><a href="#"
-                                                       onclick="javascript:setIframe('/stud/showStudInfos', this)"
+                                                       onclick="setIframe('/stud/showStudInfos', this)"
                                                        class="nav-link">学生管理</a></li>
                 <li id="achievementli" class="nav-item"><a href="#" class="nav-link">成绩管理</a></li>
-                <li id="courseli" class="nav-item"><a href="#" class="nav-link">课程管理</a></li>
+                <li id="courseli" class="nav-item"><a href="#" class="nav-link"
+                                                      onclick="setIframe('/coursemodule.jsp', this)">课程管理</a></li>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
