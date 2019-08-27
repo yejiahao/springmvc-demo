@@ -5,12 +5,12 @@
 <html>
 <head lang="zh-CN">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="icon" href="${pageContext.request.contextPath}/image/favicon.ico">
-    <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
-    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/node_modules/jquery/dist/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.zh-CN.js"></script>
